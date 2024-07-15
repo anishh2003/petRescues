@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "970724701455",
+    "project_id": "petrescues-af633",
+    "storage_bucket": "petrescues-af633.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970724701455:android:6a4f5ed801f9114ed17a7a",
+        "android_client_info": {
+          "package_name": "com.example.pet_rescues"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970724701455-oa55ckn5n2vckkbg2kuoruq1si72apbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pet_rescues",
+            "certificate_hash": "fd2e29ba51601268546c409cae37f62e99fbbce9"
+          }
+        },
+        {
+          "client_id": "970724701455-vs9h4p0f9jg4cd4phdvhdu9hve8v6jgn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl8-yKY1DiwL7-8MQAdghJvFkCQjXVBn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970724701455-vs9h4p0f9jg4cd4phdvhdu9hve8v6jgn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "970724701455-4nbf1jrunfjtr67e2m1k0anofs4otuha.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.petRescues"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
