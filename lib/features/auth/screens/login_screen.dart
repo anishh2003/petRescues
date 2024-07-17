@@ -3,22 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/common/loader.dart';
 import 'package:pet_rescues/core/constants/constants.dart';
 import 'package:pet_rescues/core/constants/sign_in_button.dart';
-// import 'package:reddit_tutorial/core/common/loader.dart';
-// import 'package:reddit_tutorial/core/common/sign_in_button.dart';
-// import 'package:reddit_tutorial/core/constants/constants.dart';
-// import 'package:reddit_tutorial/features/auth/controlller/auth_controller.dart';
-// import 'package:reddit_tutorial/responsive/responsive.dart';
+import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
-  void signInAsGuest(WidgetRef ref, BuildContext context) {
-    // ref.read(authControllerProvider.notifier).signInAsGuest(context);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = false; //ref.watch(authControllerProvider);
+    final isLoading = ref.watch(authControllerProvider);
 
     return Scaffold(
       body: isLoading

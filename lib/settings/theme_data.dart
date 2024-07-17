@@ -60,7 +60,7 @@ ThemeData lightMode = ThemeData().copyWith(
   ),
   scaffoldBackgroundColor: kColorLightScheme.onPrimary,
   appBarTheme: AppBarTheme(
-    backgroundColor: kColorLightScheme.primary,
+    backgroundColor: kColorLightScheme.onPrimary,
   ),
   cardTheme: CardTheme(
       surfaceTintColor: kColorLightScheme.surfaceTint, elevation: 15.0),
