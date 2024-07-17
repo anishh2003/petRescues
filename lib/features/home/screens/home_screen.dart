@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pet_rescues/core/constants/constants.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:pet_rescues/features/home/drawers/profile_drawer.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -53,23 +50,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Routemaster.of(context).push('/add-post');
+              //Routemaster.of(context).push('/add-post');
             },
             icon: const Icon(Icons.filter_list),
           ),
-          Builder(builder: (context) {
-            return IconButton(
-              icon: CircleAvatar(
-                backgroundImage: NetworkImage(user.profilePic),
-              ),
-              onPressed: () => displayEndDrawer(context),
-            );
-          }),
         ],
       ),
       // body: Constants.tabWidgets[_page],
-      // drawer: const CommunityListDrawer(),
-      // endDrawer: isGuest ? null : const ProfileDrawer(),
+      drawer: const ProfileDrawer(),
+
       // bottomNavigationBar: isGuest || kIsWeb
       //     ? null
       //     : CupertinoTabBar(

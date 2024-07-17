@@ -47,30 +47,49 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     var darkThemeToggle = ref.watch(darkThemeProvider);
+    var initialiseSettings = ref.watch(initialiseSettingsProvider);
     var readUserModel = ref.watch(userProvider);
 
-    return ref.watch(authStateChangeProvider).when(
-          data: (data) => MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: 'Pet rescue App',
-            theme: lightMode,
-            darkTheme: darkMode,
-            themeMode: darkThemeToggle ? ThemeMode.dark : ThemeMode.light,
-            routerDelegate: RoutemasterDelegate(
-              routesBuilder: (context) {
-                if (data != null) {
-                  getData(ref, data);
-                  if (readUserModel != null) {
-                    return loggedInRoute;
-                  }
-                }
-                return loggedOutRoute;
-              },
+    return MaterialApp(
+      home: initialiseSettings.when(
+        data: (data) => Scaffold(
+          body: ref.watch(authStateChangeProvider).when(
+                data: (data) => MaterialApp.router(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Pet rescue App',
+                  theme: lightMode,
+                  darkTheme: darkMode,
+                  themeMode: darkThemeToggle ? ThemeMode.dark : ThemeMode.light,
+                  routerDelegate: RoutemasterDelegate(
+                    routesBuilder: (context) {
+                      if (data != null) {
+                        getData(ref, data);
+                        if (readUserModel != null) {
+                          return loggedInRoute;
+                        }
+                      }
+                      return loggedOutRoute;
+                    },
+                  ),
+                  routeInformationParser: const RoutemasterParser(),
+                ),
+                error: (error, stackTrace) =>
+                    ErrorText(error: error.toString()),
+                loading: () => const Loader(),
+              ),
+        ),
+        error: (error, stackTrace) => ErrorText(
+            error: "Error encountered in fetching user preferences : $error"),
+        loading: () {
+          return MaterialApp(
+            home: Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
-            routeInformationParser: const RoutemasterParser(),
-          ),
-          error: (error, stackTrace) => ErrorText(error: error.toString()),
-          loading: () => const Loader(),
-        );
+          );
+        },
+      ),
+    );
   }
 }
