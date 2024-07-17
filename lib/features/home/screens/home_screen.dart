@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
 import 'package:pet_rescues/features/home/drawers/profile_drawer.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
@@ -59,24 +60,56 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       // body: Constants.tabWidgets[_page],
       drawer: const ProfileDrawer(),
 
-      // bottomNavigationBar: isGuest || kIsWeb
-      //     ? null
-      //     : CupertinoTabBar(
-      //         activeColor: currentTheme.iconTheme.color,
-      //         backgroundColor: currentTheme.backgroundColor,
-      //         items: const [
-      //           BottomNavigationBarItem(
-      //             icon: Icon(Icons.home),
-      //             label: '',
-      //           ),
-      //           BottomNavigationBarItem(
-      //             icon: Icon(Icons.add),
-      //             label: '',
-      //           ),
-      //         ],
-      //         onTap: onPageChanged,
-      //         currentIndex: _page,
-      //       ),
+      bottomNavigationBar: CupertinoTabBar(
+        height: 80,
+        activeColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.view_carousel),
+            label: 'Pets',
+            activeIcon: TabButtonSelectedStyle(icon: Icons.view_carousel),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline),
+            label: 'Favourites',
+            activeIcon: TabButtonSelectedStyle(icon: Icons.favorite_outline),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat_bubble),
+            label: 'Notifications',
+            activeIcon: TabButtonSelectedStyle(icon: Icons.chat_bubble),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline),
+            label: 'Account',
+            activeIcon: TabButtonSelectedStyle(icon: Icons.favorite_outline),
+          ),
+        ],
+        onTap: onPageChanged,
+        currentIndex: _page,
+      ),
+    );
+  }
+}
+
+class TabButtonSelectedStyle extends StatelessWidget {
+  const TabButtonSelectedStyle({
+    super.key,
+    required this.icon,
+  });
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(
+        color: Colors.blue.shade100,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Icon(icon),
     );
   }
 }
