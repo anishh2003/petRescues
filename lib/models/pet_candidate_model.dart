@@ -1,12 +1,24 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pet_rescues/core/constants/constants.dart';
+
+enum PetType {
+  dog,
+  cat,
+}
 
 class PetCandidateModel {
+  PetType? petType;
+  String? id;
   String? name;
+
   String? job;
   String? city;
+
   List<String>? petPics;
 
   PetCandidateModel({
+    this.petType,
+    this.id,
     this.name,
     this.job,
     this.city,
@@ -16,6 +28,7 @@ class PetCandidateModel {
 
 List<PetCandidateModel> candidates = [
   PetCandidateModel(
+    petType: PetType.dog,
     name: 'Charles Dickens (charlie), 8',
     job: 'Manager',
     city: 'Town',
@@ -26,46 +39,66 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
-    name: 'Seven, 7',
+    petType: PetType.cat,
+    name: 'Oreo , 2',
     job: 'Manager',
     city: 'Town',
-    petPics: [],
+    petPics: [
+      'assets/pets/cats/oreo/oreo_1.jpeg',
+    ],
   ),
   PetCandidateModel(
+    petType: PetType.dog,
     name: 'Six, 6',
     job: 'Manager',
     city: 'Town',
-    petPics: [],
+    petPics: [
+      Constants.logoPath,
+    ],
   ),
   PetCandidateModel(
+    petType: PetType.dog,
     name: 'Five, 5',
     job: 'Manager',
     city: 'Town',
-    petPics: [],
+    petPics: [
+      Constants.logoPath,
+    ],
   ),
   PetCandidateModel(
+    petType: PetType.dog,
     name: 'Four, 4',
     job: 'Manager',
     city: 'Town',
-    petPics: [],
+    petPics: [
+      Constants.logoPath,
+    ],
   ),
   PetCandidateModel(
-    name: 'Three, 3',
+    petType: PetType.cat,
+    name: 'Cat Three, 3',
     job: 'Manager',
     city: 'Town',
-    petPics: [],
+    petPics: [
+      Constants.logoPath,
+    ],
   ),
   PetCandidateModel(
-    name: 'Two, 2',
+    petType: PetType.cat,
+    name: 'Cat Two, 2',
     job: 'Manager',
     city: 'Town',
-    petPics: [],
+    petPics: [
+      Constants.logoPath,
+    ],
   ),
   PetCandidateModel(
     name: 'One, 1',
     job: 'Manager',
     city: 'Town',
-    petPics: [],
+    petPics: [
+      Constants.logoPath,
+    ],
   ),
 ];
 
