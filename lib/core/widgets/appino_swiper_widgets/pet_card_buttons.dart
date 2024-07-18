@@ -35,18 +35,10 @@ Widget swipeRightButton(AppinioSwiperController controller) {
             decoration: BoxDecoration(
               color: color,
               shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: color.withOpacity(0.9),
-                  spreadRadius: -10,
-                  blurRadius: 20,
-                  offset: const Offset(0, 20), // changes position of shadow
-                ),
-              ],
             ),
             alignment: Alignment.center,
             child: const Icon(
-              Icons.check,
+              Icons.favorite_border,
               color: CupertinoColors.white,
               size: 40,
             ),
@@ -86,14 +78,6 @@ Widget swipeLeftButton(AppinioSwiperController controller) {
             decoration: BoxDecoration(
               color: color,
               shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: color.withOpacity(0.9),
-                  spreadRadius: -10,
-                  blurRadius: 20,
-                  offset: const Offset(0, 20), // changes position of shadow
-                ),
-              ],
             ),
             alignment: Alignment.center,
             child: const Icon(
@@ -115,27 +99,19 @@ Widget unswipeButton(AppinioSwiperController controller) {
       height: 60,
       width: 60,
       alignment: Alignment.center,
-      child: const Icon(
-        Icons.rotate_left_rounded,
-        color: CupertinoColors.systemGrey2,
+      child: Container(
+        height: 60,
+        width: 60,
+        decoration: const BoxDecoration(
+          color: CupertinoColors.systemGrey2,
+          shape: BoxShape.circle,
+        ),
+        alignment: Alignment.center,
+        child: const Icon(
+          Icons.undo,
+          color: CupertinoColors.white,
+        ),
       ),
     ),
   );
-}
-
-class TutorialAnimationButton extends StatelessWidget {
-  const TutorialAnimationButton(this.onTap, {super.key});
-
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: const Icon(
-        Icons.question_mark,
-        color: CupertinoColors.systemGrey2,
-      ),
-    );
-  }
 }

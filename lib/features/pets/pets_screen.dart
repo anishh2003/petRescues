@@ -4,8 +4,8 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pet_rescues/core/widgets/appino_swiper_widgets/example_buttons.dart';
-import 'package:pet_rescues/core/widgets/appino_swiper_widgets/example_card.dart';
+import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card_buttons.dart';
+import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card.dart';
 import 'package:pet_rescues/models/example_candidate_model.dart';
 
 class PetsScreen extends ConsumerStatefulWidget {
@@ -61,7 +61,7 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
                   onEnd: _onEnd,
                   cardCount: candidates.length,
                   cardBuilder: (BuildContext context, int index) {
-                    return ExampleCard(candidate: candidates[index]);
+                    return PetCard(candidate: candidates[index]);
                   },
                 ),
               ),
@@ -71,7 +71,6 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TutorialAnimationButton(_shakeCard),
                   const SizedBox(
                     width: 20,
                   ),
@@ -79,11 +78,14 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
                   const SizedBox(
                     width: 20,
                   ),
+                  unswipeButton(controller),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   swipeRightButton(controller),
                   const SizedBox(
                     width: 20,
                   ),
-                  unswipeButton(controller),
                 ],
               ),
             )

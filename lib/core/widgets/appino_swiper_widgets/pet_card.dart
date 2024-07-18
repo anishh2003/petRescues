@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_rescues/models/example_candidate_model.dart';
 
-class ExampleCard extends StatelessWidget {
-  final ExampleCandidateModel candidate;
+class PetCard extends StatelessWidget {
+  final PetCandidateModel candidate;
 
-  const ExampleCard({
-    Key? key,
+  const PetCard({
+    super.key,
     required this.candidate,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-class ExampleCandidateModel {
+class PetCandidateModel {
   String? name;
   String? job;
   String? city;
   LinearGradient? color;
 
-  ExampleCandidateModel({
+  PetCandidateModel({
     this.name,
     this.job,
     this.city,
@@ -14,50 +14,50 @@ class ExampleCandidateModel {
   });
 }
 
-List<ExampleCandidateModel> candidates = [
-  ExampleCandidateModel(
+List<PetCandidateModel> candidates = [
+  PetCandidateModel(
     name: 'Eight, 8',
     job: 'Manager',
     city: 'Town',
     color: gradientPink,
   ),
-  ExampleCandidateModel(
+  PetCandidateModel(
     name: 'Seven, 7',
     job: 'Manager',
     city: 'Town',
     color: gradientBlue,
   ),
-  ExampleCandidateModel(
+  PetCandidateModel(
     name: 'Six, 6',
     job: 'Manager',
     city: 'Town',
     color: gradientPurple,
   ),
-  ExampleCandidateModel(
+  PetCandidateModel(
     name: 'Five, 5',
     job: 'Manager',
     city: 'Town',
     color: gradientRed,
   ),
-  ExampleCandidateModel(
+  PetCandidateModel(
     name: 'Four, 4',
     job: 'Manager',
     city: 'Town',
     color: gradientPink,
   ),
-  ExampleCandidateModel(
+  PetCandidateModel(
     name: 'Three, 3',
     job: 'Manager',
     city: 'Town',
     color: gradientBlue,
   ),
-  ExampleCandidateModel(
+  PetCandidateModel(
     name: 'Two, 2',
     job: 'Manager',
     city: 'Town',
     color: gradientPurple,
   ),
-  ExampleCandidateModel(
+  PetCandidateModel(
     name: 'One, 1',
     job: 'Manager',
     city: 'Town',
