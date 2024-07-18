@@ -1,6 +1,5 @@
 import 'package:pet_rescues/features/accounts/accounts_screen.dart';
 import 'package:pet_rescues/features/favourites/favourites_screen.dart';
-import 'package:pet_rescues/features/home/screens/home_screen.dart';
 import 'package:pet_rescues/features/notifications/notifications_screen.dart';
 import 'package:pet_rescues/features/pets/pets_screen.dart';
 
