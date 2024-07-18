@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pet_rescues/models/example_candidate_model.dart';
+import 'package:pet_rescues/core/constants/constants.dart';
+import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 class PetCard extends StatelessWidget {
   final PetCandidateModel candidate;
@@ -29,12 +30,20 @@ class PetCard extends StatelessWidget {
       child: Column(
         children: [
           Flexible(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: candidate.color,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10.0),
+                topRight: Radius.circular(10.0),
+              ),
+              child: Container(
+                child: candidate.petPics?.first == null
+                    ? Image.asset(Constants.logoPath)
+                    : Image.asset(candidate.petPics!.first),
+                decoration: const BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
                 ),
               ),
             ),

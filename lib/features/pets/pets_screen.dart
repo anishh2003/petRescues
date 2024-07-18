@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card_buttons.dart';
 import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card.dart';
-import 'package:pet_rescues/models/example_candidate_model.dart';
+import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 class PetsScreen extends ConsumerStatefulWidget {
   const PetsScreen({super.key});
@@ -46,7 +46,7 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
                 ),
                 child: AppinioSwiper(
                   invertAngleOnBottomDrag: true,
-                  backgroundCardCount: 3,
+                  backgroundCardCount: 0,
                   swipeOptions:
                       const SwipeOptions.only(left: true, right: true),
                   controller: controller,
