@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/core/constants/constants.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
 import 'package:pet_rescues/features/home/drawers/profile_drawer.dart';
 
@@ -18,10 +19,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     Scaffold.of(context).openDrawer();
   }
 
-  void displayEndDrawer(BuildContext context) {
-    Scaffold.of(context).openEndDrawer();
-  }
-
   void onPageChanged(int page) {
     setState(() {
       _page = page;
@@ -31,8 +28,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider)!;
-    // final isGuest = !user.isAuthenticated;
-    // final currentTheme = ref.watch(themeNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -57,9 +52,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ],
       ),
-      // body: Constants.tabWidgets[_page],
+      body: Constants.tabWidgets[_page],
       drawer: const ProfileDrawer(),
-
       bottomNavigationBar: CupertinoTabBar(
         height: 80,
         activeColor: Theme.of(context).colorScheme.primary,
