@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   appinio_swiper: ^2.1.1
+  card_swiper: ^3.0.1
   cloud_firestore: ^5.1.0
   cupertino_icons: ^1.0.6
   file_picker: ^8.0.6
@@ -60,7 +61,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/pets/dogs/puppy/
-    - assets/images/pets/dogs/polly/
     - assets/images/pets/dogs/husky/
     - assets/images/pets/cats/oreo/
     - assets/images/

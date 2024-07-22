@@ -1,3 +1,4 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/providers/common_provider.dart';
@@ -35,11 +36,22 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
         children: [
           SizedBox(
             height: 400.0,
-            child: ListView.builder(
+            width: 400.0,
+            child: Swiper(
               itemBuilder: (context, index) {
-                return Image.asset(pet.petPics![index]);
+                return FittedBox(
+                  fit: BoxFit.cover,
+                  child: Image.asset(
+                    pet.petPics![index],
+                  ),
+                );
               },
+              indicatorLayout: PageIndicatorLayout.SCALE,
               itemCount: pet.petPics!.length,
+              pagination: const SwiperPagination(),
+              curve: Curves.easeIn,
+              loop: false,
+              viewportFraction: 1.0,
             ),
           ),
         ],
