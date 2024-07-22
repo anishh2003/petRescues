@@ -36,15 +36,15 @@ class PetCard extends StatelessWidget {
                 topRight: Radius.circular(10.0),
               ),
               child: Container(
-                child: candidate.petPics?.first == null
-                    ? Image.asset(Constants.logoPath)
-                    : Image.asset(candidate.petPics!.first),
                 decoration: const BoxDecoration(
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
                 ),
+                child: candidate.petPics?.first == null
+                    ? Image.asset(Constants.logoPath)
+                    : Image.asset(candidate.petPics!.first),
               ),
             ),
           ),

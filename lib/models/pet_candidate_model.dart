@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:pet_rescues/core/constants/constants.dart';
 
 enum PetType {
@@ -28,6 +27,7 @@ class PetCandidateModel {
 
 List<PetCandidateModel> candidates = [
   PetCandidateModel(
+    id: '0',
     petType: PetType.dog,
     name: 'Charles Dickens (charlie), 8',
     job: 'Manager',
@@ -39,6 +39,7 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
+    id: '1',
     petType: PetType.cat,
     name: 'Oreo , 2',
     job: 'Manager',
@@ -48,6 +49,7 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
+    id: '2',
     petType: PetType.dog,
     name: 'Six, 6',
     job: 'Manager',
@@ -57,6 +59,7 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
+    id: '3',
     petType: PetType.dog,
     name: 'Five, 5',
     job: 'Manager',
@@ -66,6 +69,7 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
+    id: '4',
     petType: PetType.dog,
     name: 'Four, 4',
     job: 'Manager',
@@ -75,6 +79,7 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
+    id: '5',
     petType: PetType.cat,
     name: 'Cat Three, 3',
     job: 'Manager',
@@ -84,6 +89,7 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
+    id: '6',
     petType: PetType.cat,
     name: 'Cat Two, 2',
     job: 'Manager',
@@ -93,6 +99,7 @@ List<PetCandidateModel> candidates = [
     ],
   ),
   PetCandidateModel(
+    id: '7',
     name: 'One, 1',
     job: 'Manager',
     city: 'Town',
@@ -101,30 +108,3 @@ List<PetCandidateModel> candidates = [
     ],
   ),
 ];
-
-// const LinearGradient gradientRed = LinearGradient(
-//   begin: Alignment.topCenter,
-//   end: Alignment.bottomCenter,
-//   colors: [
-//     Color(0xFFFF3868),
-//     Color(0xFFFFB49A),
-//   ],
-// );
-
-// const LinearGradient gradientPurple = LinearGradient(
-//   begin: Alignment.topCenter,
-//   end: Alignment.bottomCenter,
-//   colors: [
-//     Color(0xFF736EFE),
-//     Color(0xFF62E4EC),
-//   ],
-// );
-
-// const LinearGradient gradientBlue = LinearGradient(
-//   begin: Alignment.topCenter,
-//   end: Alignment.bottomCenter,
-//   colors: [
-//     Color(0xFF0BA4E0),
-//     Color(0xFFA9E4BD),
-//   ],
-// );

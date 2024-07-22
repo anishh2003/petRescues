@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card_buttons.dart';
 import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
+import 'package:routemaster/routemaster.dart';
 
 class PetsScreen extends ConsumerStatefulWidget {
   const PetsScreen({super.key});
@@ -24,6 +25,10 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
       _shakeCard();
     });
     super.initState();
+  }
+
+  void navigateToPetDetails(BuildContext context, PetCandidateModel pet) {
+    Routemaster.of(context).push('/pets/${pet.id}');
   }
 
   @override
@@ -61,7 +66,12 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
                   onEnd: _onEnd,
                   cardCount: candidates.length,
                   cardBuilder: (BuildContext context, int index) {
-                    return PetCard(candidate: candidates[index]);
+                    return GestureDetector(
+                        onTap: () =>
+                            navigateToPetDetails(context, candidates[index]),
+                        child: PetCard(
+                          candidate: candidates[index],
+                        ));
                   },
                 ),
               ),
