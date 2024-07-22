@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/core/providers/common_provider.dart';
+import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 class PetDetailsScreen extends ConsumerStatefulWidget {
   final String petId;
@@ -15,10 +17,33 @@ class PetDetailsScreen extends ConsumerStatefulWidget {
 }
 
 class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
+  List<PetCandidateModel> petList = [];
+  late PetCandidateModel pet;
+  @override
+  void initState() {
+    // Get the pet details
+    petList = ref.read(petListProvider);
+    pet = petList.firstWhere((pet) => pet.id == widget.petId);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text("Hello there. Pet id is : ${widget.petId}")),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 400.0,
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Image.asset(pet.petPics![index]);
+              },
+              itemCount: pet.petPics!.length,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

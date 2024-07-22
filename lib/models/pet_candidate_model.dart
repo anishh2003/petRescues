@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/constants/constants.dart';
 
 enum PetType {
@@ -29,13 +30,12 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '0',
     petType: PetType.dog,
-    name: 'Charles Dickens (charlie), 8',
+    name: 'Puppy (charlie), 8',
     job: 'Manager',
     city: 'Town',
     petPics: [
-      'assets/pets/dogs/charles/charles_1.jpg',
-      'assets/pets/dogs/charles/charles_2.png',
-      'assets/pets/dogs/charles/charles_3.png'
+      'assets/images/pets/dogs/puppy/puppy1.jpg',
+      'assets/images/pets/dogs/puppy/puppy2.jpg',
     ],
   ),
   PetCandidateModel(
@@ -45,7 +45,7 @@ List<PetCandidateModel> candidates = [
     job: 'Manager',
     city: 'Town',
     petPics: [
-      'assets/pets/cats/oreo/oreo_1.jpeg',
+      'assets/images/pets/cats/oreo/oreo_1.jpeg',
     ],
   ),
   PetCandidateModel(
@@ -55,7 +55,9 @@ List<PetCandidateModel> candidates = [
     job: 'Manager',
     city: 'Town',
     petPics: [
-      Constants.logoPath,
+      'assets/images/pets/dogs/husky/husky1.jpg',
+      'assets/images/pets/dogs/husky/husky2.jpg',
+      'assets/images/pets/dogs/husky/husky3.jpg',
     ],
   ),
   PetCandidateModel(
@@ -105,6 +107,21 @@ List<PetCandidateModel> candidates = [
     city: 'Town',
     petPics: [
       Constants.logoPath,
+    ],
+  ),
+  PetCandidateModel(
+    id: '8',
+    petType: PetType.dog,
+    name: 'Polly  (Paul), 10',
+    job: 'Manager',
+    city: 'Town',
+    petPics: [
+      'assets/images/pets/dogs/polly/polly_1.jpg',
+      'assets/images/pets/dogs/polly/polly_2.jpg',
+      'assets/images/pets/dogs/polly/polly_3.jpg',
+      'assets/images/pets/dogs/polly/polly_1.webp',
+      'assets/images/pets/dogs/polly/polly_2.webp',
+      'assets/images/pets/dogs/polly/polly_3.webp'
     ],
   ),
 ];
