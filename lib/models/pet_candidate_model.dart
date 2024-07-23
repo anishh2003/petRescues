@@ -9,40 +9,15 @@ enum PetType {
   cat,
 }
 
-// enum PetDetails {
-//   breed,
-//   other,
-//   sex,
-//   walking,
-//   intenseActivity,
-//   liveWithDogs,
-//   liveWithCats,
-//   liveWithChildren,
-// }
-
 class PetBubble {
   final String? text;
   final IconData? icon;
   Color? confidenceColor;
-  final String? breed;
-  final String? other;
-  final String? sex;
-  final String? activity;
-  bool liveWithDogs;
-  bool liveWithCats;
-  bool liveWithChildren;
 
   PetBubble({
     this.text,
     this.icon,
     required this.confidenceColor,
-    this.breed,
-    this.other,
-    this.sex,
-    this.activity,
-    this.liveWithDogs = false,
-    this.liveWithCats = false,
-    this.liveWithChildren = false,
   });
 }
 
@@ -93,9 +68,21 @@ List<PetCandidateModel> candidates = [
         'Meet Puppy, an 8-year-old bundle of love looking for his forever home! Despite his name, Puppy is a mature and well-behaved dog who enjoys the simple pleasures in life. He loves leisurely walks, snuggling on the couch, and basking in the sun. Puppy is house-trained, gentle, and gets along well with other pets and children. If you\'re looking for a loyal and affectionate companion to share your days with, Puppy is the perfect match. Give this sweet boy a chance, and he\'ll fill your home with unconditional love and joy. Adopt Puppy today and make a friend for life!',
     procedures: ['Vaccinated', 'Microchipped', 'Neutered'],
     bubbleOptions: [
-      PetBubble(text: 'Belgian Malinois', confidenceColor: Colors.green),
-      PetBubble(text: 'Retriever', confidenceColor: Colors.red),
-      PetBubble(text: 'Spaniel', confidenceColor: Colors.orange),
+      PetBubble(
+        text: 'Belgian Malinois',
+        confidenceColor: Colors.green,
+        icon: Icons.pets,
+      ),
+      PetBubble(
+        text: 'Retriever',
+        confidenceColor: Colors.red,
+        icon: Icons.pets,
+      ),
+      PetBubble(
+        text: 'Spaniel',
+        confidenceColor: Colors.orange,
+        icon: Icons.pets,
+      ),
       // PetBubble(sex: 'Female', confidenceColor: Colors.green),
       // PetBubble(activity: '1-2hours', confidenceColor: Colors.green),
       // PetBubble(activity: '2+ hours', confidenceColor: Colors.red),

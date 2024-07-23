@@ -124,35 +124,42 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                       ? const SizedBox(height: 10)
                       : SizedBox(
                           height: 300.0,
-                          width: 200,
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: pet.bubbleOptions!.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  padding: const EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: pet.bubbleOptions![index]
-                                          .confidenceColor!,
-                                      width: 3.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                          width: 500,
+                          child: Wrap(
+                            spacing: 8.0, // gap between adjacent chips
+                            runSpacing: 10.0, // gap between lines
+                            children: List.generate(pet.bubbleOptions!.length,
+                                (index) {
+                              return Chip(
+                                backgroundColor: pet
+                                    .bubbleOptions![index].confidenceColor!
+                                    .withOpacity(0.05),
+                                avatar: Icon(
+                                  pet.bubbleOptions![index].icon,
+                                  color: pet
+                                      .bubbleOptions![index].confidenceColor!,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(
+                                    color: pet
+                                        .bubbleOptions![index].confidenceColor!,
+                                    width: 2.0,
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      pet.bubbleOptions![index].text!,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelLarge!
-                                          .copyWith(
-                                              color: pet.bubbleOptions![index]
-                                                  .confidenceColor!),
-                                    ),
-                                  ),
-                                );
-                              }),
-                        )
+                                ),
+                                label: Text(
+                                  pet.bubbleOptions![index].text!,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .copyWith(
+                                        color: pet.bubbleOptions![index]
+                                            .confidenceColor!,
+                                      ),
+                                ),
+                              );
+                            }),
+                          )),
                 ],
               ),
             ),
