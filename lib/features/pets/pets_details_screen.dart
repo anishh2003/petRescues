@@ -125,40 +125,42 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                       : SizedBox(
                           height: 300.0,
                           width: 500,
-                          child: Wrap(
-                            spacing: 8.0, // gap between adjacent chips
-                            runSpacing: 10.0, // gap between lines
-                            children: List.generate(pet.bubbleOptions!.length,
-                                (index) {
-                              return Chip(
-                                backgroundColor: pet
-                                    .bubbleOptions![index].confidenceColor!
-                                    .withOpacity(0.05),
-                                avatar: Icon(
-                                  pet.bubbleOptions![index].icon,
-                                  color: pet
-                                      .bubbleOptions![index].confidenceColor!,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(
+                          child: SingleChildScrollView(
+                            child: Wrap(
+                              spacing: 8.0, // gap between adjacent chips
+                              runSpacing: 10.0, // gap between lines
+                              children: List.generate(pet.bubbleOptions!.length,
+                                  (index) {
+                                return Chip(
+                                  backgroundColor: pet
+                                      .bubbleOptions![index].confidenceColor!
+                                      .withOpacity(0.05),
+                                  avatar: Icon(
+                                    pet.bubbleOptions![index].icon,
                                     color: pet
                                         .bubbleOptions![index].confidenceColor!,
-                                    width: 2.0,
                                   ),
-                                ),
-                                label: Text(
-                                  pet.bubbleOptions![index].text!,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge!
-                                      .copyWith(
-                                        color: pet.bubbleOptions![index]
-                                            .confidenceColor!,
-                                      ),
-                                ),
-                              );
-                            }),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(
+                                      color: pet.bubbleOptions![index]
+                                          .confidenceColor!,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  label: Text(
+                                    pet.bubbleOptions![index].text!,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge!
+                                        .copyWith(
+                                          color: pet.bubbleOptions![index]
+                                              .confidenceColor!,
+                                        ),
+                                  ),
+                                );
+                              }),
+                            ),
                           )),
                 ],
               ),
