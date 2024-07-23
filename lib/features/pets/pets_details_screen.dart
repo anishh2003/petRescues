@@ -118,6 +118,40 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                               );
                             },
                           ),
+                        ),
+                  const SizedBox(height: 10),
+                  pet.bubbleOptions!.isEmpty
+                      ? const SizedBox(height: 10)
+                      : SizedBox(
+                          height: 300.0,
+                          width: 200,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: pet.bubbleOptions!.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: pet.bubbleOptions![index]
+                                          .confidenceColor!,
+                                      width: 3.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      pet.bubbleOptions![index].text!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge!
+                                          .copyWith(
+                                              color: pet.bubbleOptions![index]
+                                                  .confidenceColor!),
+                                    ),
+                                  ),
+                                );
+                              }),
                         )
                 ],
               ),

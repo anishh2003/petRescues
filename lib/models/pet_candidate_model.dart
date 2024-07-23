@@ -1,8 +1,49 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:pet_rescues/core/constants/constants.dart';
 
 enum PetType {
   dog,
   cat,
+}
+
+// enum PetDetails {
+//   breed,
+//   other,
+//   sex,
+//   walking,
+//   intenseActivity,
+//   liveWithDogs,
+//   liveWithCats,
+//   liveWithChildren,
+// }
+
+class PetBubble {
+  final String? text;
+  final IconData? icon;
+  Color? confidenceColor;
+  final String? breed;
+  final String? other;
+  final String? sex;
+  final String? activity;
+  bool liveWithDogs;
+  bool liveWithCats;
+  bool liveWithChildren;
+
+  PetBubble({
+    this.text,
+    this.icon,
+    required this.confidenceColor,
+    this.breed,
+    this.other,
+    this.sex,
+    this.activity,
+    this.liveWithDogs = false,
+    this.liveWithCats = false,
+    this.liveWithChildren = false,
+  });
 }
 
 // enum Procedures {
@@ -22,6 +63,7 @@ class PetCandidateModel {
 
   List<String>? petPics;
   List<String>? procedures;
+  List<PetBubble>? bubbleOptions;
 
   PetCandidateModel({
     this.petType,
@@ -32,6 +74,7 @@ class PetCandidateModel {
     this.description,
     this.petPics,
     this.procedures,
+    this.bubbleOptions,
   });
 }
 
@@ -49,6 +92,28 @@ List<PetCandidateModel> candidates = [
     description:
         'Meet Puppy, an 8-year-old bundle of love looking for his forever home! Despite his name, Puppy is a mature and well-behaved dog who enjoys the simple pleasures in life. He loves leisurely walks, snuggling on the couch, and basking in the sun. Puppy is house-trained, gentle, and gets along well with other pets and children. If you\'re looking for a loyal and affectionate companion to share your days with, Puppy is the perfect match. Give this sweet boy a chance, and he\'ll fill your home with unconditional love and joy. Adopt Puppy today and make a friend for life!',
     procedures: ['Vaccinated', 'Microchipped', 'Neutered'],
+    bubbleOptions: [
+      PetBubble(text: 'Belgian Malinois', confidenceColor: Colors.green),
+      PetBubble(text: 'Retriever', confidenceColor: Colors.red),
+      PetBubble(text: 'Spaniel', confidenceColor: Colors.orange),
+      // PetBubble(sex: 'Female', confidenceColor: Colors.green),
+      // PetBubble(activity: '1-2hours', confidenceColor: Colors.green),
+      // PetBubble(activity: '2+ hours', confidenceColor: Colors.red),
+      // PetBubble(liveWithDogs: true, confidenceColor: Colors.orange),
+      // PetBubble(liveWithChildren: true, confidenceColor: Colors.green),
+    ],
+    // details: {
+    //   PetDetails(breed: 'Belgian Malinois', confidenceColor: Colors.green),
+    //   //  other: true, sex: 'Female', walking: '1-2 hours', intenseActivity: )
+    //   PetDetails: 'Belgian Malinois',
+    //   PetDetails.other: 'true',
+    //   PetDetails.sex: 'Female',
+    //   PetDetails.walking: '1-2 hours',
+    //   PetDetails.intenseActivity: '2+ hours',
+    //   PetDetails.liveWithChildren: 'true',
+    //   PetDetails.liveWithDogs: 'true',
+    //   PetDetails.liveWithCats: 'false',
+    // },
   ),
   PetCandidateModel(
     id: '1',
