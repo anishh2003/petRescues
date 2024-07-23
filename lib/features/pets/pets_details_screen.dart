@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/providers/common_provider.dart';
+import 'package:pet_rescues/core/widgets/icon_button_widget.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 class PetDetailsScreen extends ConsumerStatefulWidget {
@@ -32,29 +33,70 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 400.0,
-            width: 400.0,
-            child: Swiper(
-              itemBuilder: (context, index) {
-                return FittedBox(
-                  fit: BoxFit.cover,
-                  child: Image.asset(
-                    pet.petPics![index],
-                  ),
-                );
-              },
-              indicatorLayout: PageIndicatorLayout.SCALE,
-              itemCount: pet.petPics!.length,
-              pagination: const SwiperPagination(),
-              curve: Curves.easeIn,
-              loop: false,
-              viewportFraction: 1.0,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 400.0,
+              width: 400.0,
+              child: Swiper(
+                itemBuilder: (context, index) {
+                  return FittedBox(
+                    fit: BoxFit.cover,
+                    child: Image.asset(
+                      pet.petPics![index],
+                    ),
+                  );
+                },
+                indicatorLayout: PageIndicatorLayout.SCALE,
+                itemCount: pet.petPics!.length,
+                pagination: const SwiperPagination(),
+                curve: Curves.easeIn,
+                loop: false,
+                viewportFraction: 1.0,
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButtonWidget(
+                  color: Colors.red,
+                  icon: Icons.close,
+                  onPressed: () {},
+                ),
+                IconButtonWidget(
+                  color: Colors.orange,
+                  icon: Icons.share,
+                  onPressed: () {},
+                ),
+                IconButtonWidget(
+                  color: Colors.green,
+                  icon: Icons.favorite_outline,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            const SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    pet.name ?? '',
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  const SizedBox(height: 10.0),
+                  Text(
+                    pet.description ?? '',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
