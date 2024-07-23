@@ -92,6 +92,33 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                     pet.description ?? '',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
+                  const SizedBox(height: 20.0),
+                  pet.procedures!.isEmpty
+                      ? const SizedBox(height: 0)
+                      : Container(
+                          width: 140,
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.green,
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: pet.procedures!.length,
+                            itemBuilder: (context, index) {
+                              return Text(
+                                pet.procedures![index],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge!
+                                    .copyWith(color: Colors.green),
+                              );
+                            },
+                          ),
+                        )
                 ],
               ),
             ),

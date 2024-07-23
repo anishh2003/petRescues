@@ -48,6 +48,11 @@ ThemeData lightMode = ThemeData().copyWith(
       color: kColorLightScheme.secondary,
       fontStyle: FontStyle.italic,
     ),
+    labelLarge: GoogleFonts.archivoNarrow(
+        color: kColorLightScheme.onSurface,
+        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.bold,
+        fontSize: 20.0),
     labelMedium: GoogleFonts.archivoNarrow(
         color: kColorLightScheme.onSurface,
         fontStyle: FontStyle.italic,
@@ -127,6 +132,11 @@ ThemeData darkMode = ThemeData.dark().copyWith(
       color: kColorDarkScheme.secondary,
       fontStyle: FontStyle.italic,
     ),
+    labelLarge: GoogleFonts.archivoNarrow(
+        color: kColorDarkScheme.primary,
+        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.bold,
+        fontSize: 20.0),
     labelMedium: GoogleFonts.archivoNarrow(
         color: kColorDarkScheme.primary,
         fontStyle: FontStyle.italic,
