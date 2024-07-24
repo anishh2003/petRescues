@@ -32,7 +32,12 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          'Back to pet list',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -43,9 +48,7 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                 itemBuilder: (context, index) {
                   return FittedBox(
                     fit: BoxFit.cover,
-                    child: Image.asset(
-                      pet.petPics![index],
-                    ),
+                    child: Image.asset(pet.petPics![index]),
                   );
                 },
                 indicatorLayout: PageIndicatorLayout.SCALE,
@@ -93,7 +96,7 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const SizedBox(height: 20.0),
-                  pet.procedures!.isEmpty
+                  pet.procedures == null || pet.procedures!.isEmpty
                       ? const SizedBox(height: 0)
                       : Container(
                           width: 140,
@@ -120,7 +123,7 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                           ),
                         ),
                   const SizedBox(height: 10),
-                  pet.bubbleOptions!.isEmpty
+                  pet.bubbleOptions == null || pet.bubbleOptions!.isEmpty
                       ? const SizedBox(height: 10)
                       : SizedBox(
                           height: 300.0,
@@ -165,6 +168,21 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                 ],
               ),
             ),
+            Container(
+              width: double.infinity,
+              height: 80.0,
+              color: const Color.fromARGB(255, 88, 21, 99),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  pet.rescueOrganisation ??= "",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(color: Color.fromARGB(255, 240, 234, 234)),
+                ),
+              ),
+            )
           ],
         ),
       ),

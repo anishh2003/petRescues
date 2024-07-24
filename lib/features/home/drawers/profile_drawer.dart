@@ -41,7 +41,10 @@ class ProfileDrawer extends ConsumerWidget {
                 'My Profile',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
-              leading: const Icon(Icons.person),
+              leading: Icon(Icons.person,
+                  color: darkTheme
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.onSurface),
               onTap: () => navigateToUserProfile(context, user.uid),
             ),
             ListTile(
@@ -63,10 +66,11 @@ class ProfileDrawer extends ConsumerWidget {
               leading: Icon(
                 Icons.sunny,
                 color: darkTheme
-                    ? Theme.of(context).colorScheme.primary
+                    ? Theme.of(context).colorScheme.onPrimary
                     : Colors.yellow,
               ),
               trailing: Switch.adaptive(
+                activeColor: Theme.of(context).colorScheme.onPrimary,
                 value: darkTheme,
                 onChanged: (bool value) async {
                   ref.read(darkThemeProvider.notifier).update((state) => value);

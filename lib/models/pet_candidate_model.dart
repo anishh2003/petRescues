@@ -39,6 +39,7 @@ class PetCandidateModel {
   List<String>? petPics;
   List<String>? procedures;
   List<PetBubble>? bubbleOptions;
+  String? rescueOrganisation;
 
   PetCandidateModel({
     this.petType,
@@ -50,6 +51,7 @@ class PetCandidateModel {
     this.petPics,
     this.procedures,
     this.bubbleOptions,
+    this.rescueOrganisation,
   });
 }
 
@@ -114,6 +116,7 @@ List<PetCandidateModel> candidates = [
         icon: Icons.cruelty_free,
       ),
     ],
+    rescueOrganisation: 'Furry Rescue Italy',
   ),
   PetCandidateModel(
     id: '1',
@@ -127,6 +130,39 @@ List<PetCandidateModel> candidates = [
     description:
         'Meet Oreo, a charming 2-year-old cat with a personality as sweet as his name! Oreo is a playful and curious feline who loves exploring his surroundings and engaging in fun games. His striking black and white coat adds to his irresistible charm. Oreo is affectionate, enjoys being petted, and will happily curl up in your lap for a cozy nap. He gets along well with other pets and is great with children. If you\'re looking for a delightful and loving addition to your family, Oreo is the purr-fect choice. Adopt Oreo today and let him bring joy and companionship into your home!',
     procedures: ['Vaccinated', 'Microchipped'],
+    bubbleOptions: [
+      PetBubble(
+        text: 'Other',
+        confidenceColor: Colors.green,
+        icon: Icons.pets,
+      ),
+      PetBubble(
+        text: 'Male',
+        confidenceColor: Colors.red,
+        icon: Icons.male,
+      ),
+      PetBubble(
+        text: '2+ hours',
+        confidenceColor: Colors.green,
+        icon: Icons.directions_walk,
+      ),
+      PetBubble(
+        text: 'Can live with cats',
+        confidenceColor: Colors.yellow,
+        icon: Icons.cruelty_free,
+      ),
+      PetBubble(
+        text: 'Can live with dogs',
+        confidenceColor: Colors.green,
+        icon: Icons.cruelty_free,
+      ),
+      PetBubble(
+        text: 'Can live with children',
+        confidenceColor: Colors.red,
+        icon: Icons.cruelty_free,
+      ),
+    ],
+    rescueOrganisation: 'HelpingdogsandcatsrescueCIC',
   ),
   PetCandidateModel(
     id: '2',
@@ -145,6 +181,39 @@ List<PetCandidateModel> candidates = [
       'Vaccinated',
       'Microchipped',
     ],
+    bubbleOptions: [
+      PetBubble(
+        text: 'Husky',
+        confidenceColor: Colors.green,
+        icon: Icons.pets,
+      ),
+      PetBubble(
+        text: 'Other',
+        confidenceColor: Colors.red,
+        icon: Icons.pets,
+      ),
+      PetBubble(
+        text: 'Male',
+        confidenceColor: Colors.green,
+        icon: Icons.male,
+      ),
+      PetBubble(
+        text: '2+ hours',
+        confidenceColor: Colors.green,
+        icon: Icons.directions_walk,
+      ),
+      PetBubble(
+        text: 'Can live with dogs',
+        confidenceColor: Colors.yellow,
+        icon: Icons.cruelty_free,
+      ),
+      PetBubble(
+        text: 'Can live with children',
+        confidenceColor: Colors.green,
+        icon: Icons.cruelty_free,
+      ),
+    ],
+    rescueOrganisation: 'Furry Rescue Italy',
   ),
   PetCandidateModel(
     id: '3',

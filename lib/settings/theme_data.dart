@@ -67,6 +67,9 @@ ThemeData lightMode = ThemeData().copyWith(
   appBarTheme: AppBarTheme(
     backgroundColor: kColorLightScheme.onPrimary,
   ),
+  drawerTheme: DrawerThemeData(
+    backgroundColor: kColorLightScheme.onPrimary,
+  ),
   cardTheme: CardTheme(
       surfaceTintColor: kColorLightScheme.surfaceTint, elevation: 15.0),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -97,57 +100,64 @@ ThemeData darkMode = ThemeData.dark().copyWith(
       fontStyle: FontStyle.italic,
     ),
     headlineMedium: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.primary,
+      color: kColorDarkScheme.onPrimary,
       fontStyle: FontStyle.italic,
     ),
     headlineSmall: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.primary,
+      color: kColorDarkScheme.onPrimary,
       fontStyle: FontStyle.italic,
     ),
     titleSmall: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.primary,
+      color: kColorDarkScheme.onPrimary,
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.italic,
     ),
     titleMedium: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.primary,
+      color: kColorDarkScheme.onPrimary,
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.italic,
     ),
     titleLarge: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.primary,
+      color: kColorDarkScheme.onPrimary,
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.italic,
     ),
     bodySmall: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.primary,
+      color: kColorDarkScheme.onPrimary,
       fontStyle: FontStyle.italic,
     ),
     bodyMedium: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.secondary,
+      color: kColorDarkScheme.onPrimary,
       fontStyle: FontStyle.italic,
       fontSize: 15.0,
     ),
     bodyLarge: GoogleFonts.archivoNarrow(
-      color: kColorDarkScheme.secondary,
+      color: kColorDarkScheme.onPrimary,
       fontStyle: FontStyle.italic,
     ),
     labelLarge: GoogleFonts.archivoNarrow(
-        color: kColorDarkScheme.primary,
+        color: kColorDarkScheme.onPrimary,
         fontStyle: FontStyle.italic,
         fontWeight: FontWeight.bold,
         fontSize: 20.0),
     labelMedium: GoogleFonts.archivoNarrow(
-        color: kColorDarkScheme.primary,
+        color: kColorDarkScheme.onPrimary,
         fontStyle: FontStyle.italic,
         fontWeight: FontWeight.bold,
         fontSize: 15.0),
     labelSmall: GoogleFonts.archivoNarrow(
-        color: kColorDarkScheme.primary,
+        color: kColorDarkScheme.onPrimary,
         fontWeight: FontWeight.w100,
         fontSize: 14.0),
   ),
   appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(
+      color: kColorDarkScheme.onPrimary,
+    ),
+    backgroundColor: kColorDarkScheme.primary,
+  ),
+  scaffoldBackgroundColor: kColorDarkScheme.primary,
+  drawerTheme: DrawerThemeData(
     backgroundColor: kColorDarkScheme.primary,
   ),
   cardTheme: CardTheme(
