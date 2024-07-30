@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/constants/constants.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
 import 'package:pet_rescues/features/home/drawers/profile_drawer.dart';
+import 'package:routemaster/routemaster.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -23,6 +24,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     setState(() {
       _page = page;
     });
+  }
+
+  void navigateToFiltersScreen(BuildContext context) {
+    Routemaster.of(context).push('/filters');
   }
 
   @override
@@ -46,7 +51,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              //Routemaster.of(context).push('/add-post');
+              navigateToFiltersScreen(context);
             },
             icon: const Icon(Icons.filter_list),
           ),
