@@ -57,25 +57,28 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   }
 }
 
-class ExpansionTileOptions extends StatefulWidget {
-  const ExpansionTileOptions({
-    super.key,
-    required this.menuIndex,
-  });
-
+class ExpansionTileOptions extends ConsumerStatefulWidget {
+  const ExpansionTileOptions({required this.menuIndex, super.key});
   final int menuIndex;
-
   @override
-  State<ExpansionTileOptions> createState() => _ExpansionTileOptionsState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ExpansionTileOptionsState();
 }
 
-class _ExpansionTileOptionsState extends State<ExpansionTileOptions> {
+class _ExpansionTileOptionsState extends ConsumerState<ExpansionTileOptions> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
+    var darkTheme = ref.watch(darkThemeProvider);
     return ExpansionTile(
       expandedAlignment: Alignment.centerLeft,
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      iconColor: darkTheme
+          ? Theme.of(context).colorScheme.primaryContainer
+          : Theme.of(context).colorScheme.onSurface,
+      collapsedIconColor: darkTheme
+          ? Theme.of(context).colorScheme.primaryContainer
+          : Theme.of(context).colorScheme.onSurface,
       title: Text(
         filterMenuOptions[widget.menuIndex].title,
         style: Theme.of(context).textTheme.headlineSmall,
@@ -97,10 +100,22 @@ class _ExpansionTileOptionsState extends State<ExpansionTileOptions> {
                   },
                   child: ListTile(
                     leading: index == i
-                        ? const Icon(Icons.check_box)
-                        : const Icon(Icons.check_box_outline_blank),
+                        ? Icon(
+                            Icons.check_box,
+                            color: darkTheme
+                                ? Theme.of(context).colorScheme.primaryContainer
+                                : Theme.of(context).colorScheme.onSurface,
+                          )
+                        : Icon(
+                            Icons.check_box_outline_blank,
+                            color: darkTheme
+                                ? Theme.of(context).colorScheme.primaryContainer
+                                : Theme.of(context).colorScheme.onSurface,
+                          ),
                     title: Text(
-                        filterMenuOptions[widget.menuIndex].options[i].title),
+                      filterMenuOptions[widget.menuIndex].options[i].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ),
                 );
               },
