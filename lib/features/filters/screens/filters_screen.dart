@@ -7,6 +7,7 @@ import 'package:pet_rescues/features/filters/widgets/filter_button.dart';
 import 'package:pet_rescues/features/filters/widgets/pet_filter_toggle.dart';
 import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
+import 'package:routemaster/routemaster.dart';
 
 class FiltersScreen extends ConsumerStatefulWidget {
   const FiltersScreen({super.key});
@@ -65,6 +66,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                     onPressed: () {
                       ref.read(appliedPetsToggleProvider.notifier).update(
                           (state) => ref.read(tempSelectedPetsToggleProvider));
+                      Routemaster.of(context).pop();
                     },
                   ),
                 ),
@@ -76,7 +78,12 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                         Theme.of(context).colorScheme.secondaryContainer,
                     darkThemeColor: Theme.of(context).colorScheme.outline,
                     title: 'Clear all',
-                    onPressed: () {},
+                    onPressed: () {
+                      ref
+                          .read(appliedPetsToggleProvider.notifier)
+                          .update((state) => PetFilterType.none);
+                      Routemaster.of(context).pop();
+                    },
                   ),
                 ),
               ],
