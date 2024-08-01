@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/core/providers/filters_provider.dart';
 
 class PetFilterToggle extends ConsumerStatefulWidget {
   const PetFilterToggle({
@@ -20,6 +21,19 @@ class _PetFilterToggleState extends ConsumerState<PetFilterToggle> {
   void _handleOptionChange(int? value) {
     setState(() {
       selectedOption = value!;
+      if (value == PetFilterType.cat.index) {
+        ref
+            .read(tempSelectedPetsToggleProvider.notifier)
+            .update((state) => PetFilterType.cat);
+      } else if (value == PetFilterType.dog.index) {
+        ref
+            .read(tempSelectedPetsToggleProvider.notifier)
+            .update((state) => PetFilterType.dog);
+      } else {
+        ref
+            .read(tempSelectedPetsToggleProvider.notifier)
+            .update((state) => PetFilterType.none);
+      }
     });
   }
 

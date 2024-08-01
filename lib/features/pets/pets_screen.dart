@@ -4,6 +4,7 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/core/providers/common_provider.dart';
 import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card_buttons.dart';
 import 'package:pet_rescues/core/widgets/appino_swiper_widgets/pet_card.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
@@ -33,6 +34,7 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final petList = ref.watch(petListProvider);
     return Material(
       child: CupertinoPageScaffold(
         child: Column(
@@ -64,13 +66,13 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
                   },
                   onSwipeEnd: _swipeEnd,
                   onEnd: _onEnd,
-                  cardCount: candidates.length,
+                  cardCount: petList.length,
                   cardBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                         onTap: () =>
-                            navigateToPetDetails(context, candidates[index]),
+                            navigateToPetDetails(context, petList[index]),
                         child: PetCard(
-                          candidate: candidates[index],
+                          candidate: petList[index],
                         ));
                   },
                 ),

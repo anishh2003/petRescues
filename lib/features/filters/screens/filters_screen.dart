@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/core/providers/filters_provider.dart';
 import 'package:pet_rescues/features/filters/widgets/expansion_tile_options.dart';
 import 'package:pet_rescues/features/filters/widgets/filter_button.dart';
 import 'package:pet_rescues/features/filters/widgets/pet_filter_toggle.dart';
@@ -20,6 +21,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   @override
   Widget build(BuildContext context) {
     var darkTheme = ref.watch(darkThemeProvider);
+    var petsToggle = ref.watch(appliedPetsToggleProvider);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -59,7 +62,10 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                         Theme.of(context).colorScheme.primaryContainer,
                     darkThemeColor: Theme.of(context).colorScheme.tertiary,
                     title: 'Apply filters',
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(appliedPetsToggleProvider.notifier).update(
+                          (state) => ref.read(tempSelectedPetsToggleProvider));
+                    },
                   ),
                 ),
                 const SizedBox(height: 10),
