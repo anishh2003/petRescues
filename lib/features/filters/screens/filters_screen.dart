@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/features/filters/widgets/expansion_tile_options.dart';
+import 'package:pet_rescues/features/filters/widgets/filter_button.dart';
 import 'package:pet_rescues/features/filters/widgets/pet_filter_toggle.dart';
 import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
@@ -40,7 +42,7 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                 PetFilterToggle(darkTheme: darkTheme),
                 const SizedBox(height: 20.0),
                 SizedBox(
-                  height: 500,
+                  height: 360,
                   child: ListView.builder(
                     itemCount: filterMenuOptions.length,
                     itemBuilder: (context, index) {
@@ -48,81 +50,34 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                     },
                   ),
                 ),
+                const Divider(height: 5),
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.center,
+                  child: FilterButton(
+                    lightThemeColor:
+                        Theme.of(context).colorScheme.primaryContainer,
+                    darkThemeColor: Theme.of(context).colorScheme.tertiary,
+                    title: 'Apply filters',
+                    onPressed: () {},
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.center,
+                  child: FilterButton(
+                    lightThemeColor:
+                        Theme.of(context).colorScheme.secondaryContainer,
+                    darkThemeColor: Theme.of(context).colorScheme.outline,
+                    title: 'Clear all',
+                    onPressed: () {},
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class ExpansionTileOptions extends ConsumerStatefulWidget {
-  const ExpansionTileOptions({required this.menuIndex, super.key});
-  final int menuIndex;
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ExpansionTileOptionsState();
-}
-
-class _ExpansionTileOptionsState extends ConsumerState<ExpansionTileOptions> {
-  int index = 0;
-  @override
-  Widget build(BuildContext context) {
-    var darkTheme = ref.watch(darkThemeProvider);
-    return ExpansionTile(
-      expandedAlignment: Alignment.centerLeft,
-      expandedCrossAxisAlignment: CrossAxisAlignment.start,
-      iconColor: darkTheme
-          ? Theme.of(context).colorScheme.primaryContainer
-          : Theme.of(context).colorScheme.onSurface,
-      collapsedIconColor: darkTheme
-          ? Theme.of(context).colorScheme.primaryContainer
-          : Theme.of(context).colorScheme.onSurface,
-      title: Text(
-        filterMenuOptions[widget.menuIndex].title,
-        style: Theme.of(context).textTheme.headlineSmall,
-      ),
-      children: [
-        SizedBox(
-          height: 200,
-          child: Scrollbar(
-            trackVisibility: true,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: filterMenuOptions[widget.menuIndex].options.length,
-              itemBuilder: (context, i) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      index = i;
-                    });
-                  },
-                  child: ListTile(
-                    leading: index == i
-                        ? Icon(
-                            Icons.check_box,
-                            color: darkTheme
-                                ? Theme.of(context).colorScheme.primaryContainer
-                                : Theme.of(context).colorScheme.onSurface,
-                          )
-                        : Icon(
-                            Icons.check_box_outline_blank,
-                            color: darkTheme
-                                ? Theme.of(context).colorScheme.primaryContainer
-                                : Theme.of(context).colorScheme.onSurface,
-                          ),
-                    title: Text(
-                      filterMenuOptions[widget.menuIndex].options[i].title,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
