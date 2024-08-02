@@ -90,20 +90,33 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
                     pet.name ?? '',
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
-                  const SizedBox(height: 10.0),
+                  const SizedBox(height: 1.0),
                   Row(
                     children: [
                       Text(
                         'Size : ',
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Text(
                         pet.size.name,
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10.0),
+                  const SizedBox(height: 1.0),
+                  Row(
+                    children: [
+                      Text(
+                        'Gender : ',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        pet.gender.name,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
                   Text(
                     pet.description ?? '',
                     style: Theme.of(context).textTheme.bodyLarge,

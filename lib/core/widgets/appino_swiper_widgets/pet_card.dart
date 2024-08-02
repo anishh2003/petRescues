@@ -89,13 +89,18 @@ class PetCard extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      candidate.city!,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
-                      ),
-                    )
+                    Row(
+                      children: [
+                        Text(
+                          'Gender : ',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          candidate.gender.name,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],
