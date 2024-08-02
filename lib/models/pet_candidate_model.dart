@@ -9,6 +9,14 @@ enum PetType {
   cat,
 }
 
+enum Gender {
+  Male,
+  Female,
+  NotSure,
+}
+
+enum Size { Small, Medium, Large, Giant }
+
 class PetBubble {
   final String? text;
   final IconData? icon;
@@ -31,8 +39,9 @@ class PetCandidateModel {
   PetType? petType;
   String? id;
   String? name;
+  Size size;
+  Gender gender;
 
-  String? job;
   String? city;
   String? description;
 
@@ -45,7 +54,8 @@ class PetCandidateModel {
     this.petType,
     this.id,
     this.name,
-    this.job,
+    required this.size,
+    required this.gender,
     this.city,
     this.description,
     this.petPics,
@@ -60,7 +70,8 @@ List<PetCandidateModel> candidates = [
     id: '0',
     petType: PetType.dog,
     name: 'Puppy (charlie), 8',
-    job: 'Manager',
+    gender: Gender.Male,
+    size: Size.Medium,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/puppy/puppy1.jpg',
@@ -122,7 +133,8 @@ List<PetCandidateModel> candidates = [
     id: '1',
     petType: PetType.cat,
     name: 'Oreo , 2',
-    job: 'Manager',
+    gender: Gender.Male,
+    size: Size.Small,
     city: 'Town',
     petPics: [
       'assets/images/pets/cats/oreo/oreo_1.jpeg',
@@ -168,7 +180,8 @@ List<PetCandidateModel> candidates = [
     id: '2',
     petType: PetType.dog,
     name: 'Six, 6',
-    job: 'Manager',
+    gender: Gender.Female,
+    size: Size.Large,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/husky/husky1.jpg',
@@ -218,8 +231,9 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '3',
     petType: PetType.dog,
+    size: Size.Small,
     name: 'Five, 5',
-    job: 'Manager',
+    gender: Gender.Female,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -230,7 +244,8 @@ List<PetCandidateModel> candidates = [
     id: '4',
     petType: PetType.dog,
     name: 'Four, 4',
-    job: 'Manager',
+    gender: Gender.Male,
+    size: Size.Giant,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -241,7 +256,8 @@ List<PetCandidateModel> candidates = [
     id: '5',
     petType: PetType.cat,
     name: 'Cat Three, 3',
-    job: 'Manager',
+    gender: Gender.Female,
+    size: Size.Small,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -252,7 +268,8 @@ List<PetCandidateModel> candidates = [
     id: '6',
     petType: PetType.cat,
     name: 'Cat Two, 2',
-    job: 'Manager',
+    gender: Gender.Male,
+    size: Size.Medium,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -262,7 +279,8 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '7',
     name: 'One, 1',
-    job: 'Manager',
+    gender: Gender.Male,
+    size: Size.Large,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -273,7 +291,8 @@ List<PetCandidateModel> candidates = [
     id: '8',
     petType: PetType.dog,
     name: 'Polly  (Paul), 10',
-    job: 'Manager',
+    gender: Gender.Male,
+    size: Size.Giant,
     city: 'Town',
     petPics: [
       Constants.logoPath,
