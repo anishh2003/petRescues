@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pet_rescues/core/providers/filters_provider.dart';
+import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 // final petsListProvider = Provider<List<PetCandidateModel>>((ref) {
