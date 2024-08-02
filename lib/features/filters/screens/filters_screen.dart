@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/core/providers/settings_provider.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
 import 'package:pet_rescues/features/filters/widgets/expansion_tile_options.dart';
 import 'package:pet_rescues/features/filters/widgets/filter_button.dart';
@@ -18,6 +19,11 @@ class FiltersScreen extends ConsumerStatefulWidget {
 
 class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   ScrollController myScrollController = ScrollController();
+
+  void saveUsersFilterOptionsToDevice() {
+    ref.read(usersSettingsProvider).setAnimalPreferenceFilterSettings(
+        ref.read(appliedPetsToggleProvider.notifier).state);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +72,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                     onPressed: () {
                       ref.read(appliedPetsToggleProvider.notifier).update(
                           (state) => ref.read(tempSelectedPetsToggleProvider));
+
+                      saveUsersFilterOptionsToDevice();
+
                       Routemaster.of(context).pop();
                     },
                   ),

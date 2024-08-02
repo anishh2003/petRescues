@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/common/error_text.dart';
 import 'package:pet_rescues/core/common/loader.dart';
+import 'package:pet_rescues/core/providers/settings_provider.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
 import 'package:pet_rescues/firebase_options.dart';
 import 'package:pet_rescues/models/user_model.dart';

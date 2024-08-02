@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/core/providers/settings_provider.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 import 'package:routemaster/routemaster.dart';
@@ -19,7 +20,7 @@ class ProfileDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
     var darkTheme = ref.watch(darkThemeProvider);
-    var darkThemetoggleValue = ref.watch(usersSettingsProvider);
+    var usersSettings = ref.watch(usersSettingsProvider);
 
     return Drawer(
       child: SafeArea(
@@ -74,7 +75,7 @@ class ProfileDrawer extends ConsumerWidget {
                 value: darkTheme,
                 onChanged: (bool value) async {
                   ref.read(darkThemeProvider.notifier).update((state) => value);
-                  await darkThemetoggleValue.setUsersThemeSettings(value);
+                  await usersSettings.setUsersThemeSettings(value);
                 },
               ),
               onTap: () => logOut(ref),

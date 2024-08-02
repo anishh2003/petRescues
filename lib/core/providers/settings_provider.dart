@@ -1,5 +1,12 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
+import 'package:pet_rescues/settings/theme_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+final usersSettingsProvider = Provider<UsersSettings>((ref) {
+  return UsersSettings();
+});
 
 class UsersSettings {
   static late SharedPreferences _sharedPreferences;
@@ -18,15 +25,60 @@ class UsersSettings {
   Future<void> setUsersThemeSettings(bool value) async {
     await _sharedPreferences.setBool('Theme', value);
   }
+
+//   PetFilterType getAnimalPreferenceFilterSettings() {
+//     int? filterConfig = _sharedPreferences.getInt('AnimalFilter');
+//     filterConfig ??= 0;
+//     if (filterConfig == PetFilterType.cat) {
+//       return PetFilterType.cat;
+//     }
+
+//     return filterConfig;
+//   }
+
+//   Future<void> setAnimalPreferenceFilterSettings(int value) async {
+//     await _sharedPreferences.setInt('AnimalFilter', value);
+//   }
+// }
+
+//   List<String> getUsersAnimalFilterSettings() {
+//     List<String>? filterConfig = _sharedPreferences.getStringList('Filter');
+
+//     return filterConfig!;
+//   }
+
+//   Future<void> setUsersAnimalFilterSettings(List<String> value) async {
+//     await _sharedPreferences.setStringList('Filter', value);
+//   }
+// }
+
+//   PetFilterType getAnimalPreferenceFilterSettings() {
+//     int? filterConfig = _sharedPreferences.getInt('AnimalFilter');
+//     filterConfig ??= 0;
+//     if (filterConfig == PetFilterType.cat.index) {
+//       return PetFilterType.cat;
+//     } else if (filterConfig == PetFilterType.dog.index) {
+//       return PetFilterType.dog;
+//     } else {
+//       return PetFilterType.none;
+//     }
+//   }
+
+//   Future<void> setAnimalPreferenceFilterSettings(int value) async {
+//     await _sharedPreferences.setInt('AnimalFilter', value);
+//   }
+// }
+
+  PetFilterType getPetFilterTypeFromString() {
+    String? value = _sharedPreferences.getString('AnimalFilter');
+    return PetFilterType.values.firstWhere((e) => e.toString() == value,
+        orElse: () => PetFilterType.none);
+  }
+
+  Future<void> setAnimalPreferenceFilterSettings(PetFilterType value) async {
+    await _sharedPreferences.setString('AnimalFilter', value.toString());
+  }
 }
-
-final usersSettingsProvider = Provider<UsersSettings>((ref) {
-  return UsersSettings();
-});
-
-final darkThemeProvider = StateProvider<bool>((ref) {
-  return false;
-});
 
 final initialiseSettingsProvider = FutureProvider<void>((ref) async {
   UsersSettings userSettings = ref.read(usersSettingsProvider);
@@ -34,4 +86,8 @@ final initialiseSettingsProvider = FutureProvider<void>((ref) async {
   ref
       .read(darkThemeProvider.notifier)
       .update((state) => userSettings.getUsersThemeSettings());
+
+  ref
+      .read(appliedPetsToggleProvider.notifier)
+      .update((state) => userSettings.getPetFilterTypeFromString());
 });
