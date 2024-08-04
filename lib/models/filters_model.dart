@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:pet_rescues/models/pet_candidate_model.dart';
+
 class FilterOption {
   final String title;
   final List<FilterOption> options;
@@ -25,19 +27,19 @@ List<FilterOption> radiusFilterOptions = [
 ];
 
 List<FilterOption> sizeFilterOptions = [
-  FilterOption(title: 'Small', options: []),
-  FilterOption(title: 'Medium', options: []),
-  FilterOption(title: 'Large', options: []),
-  FilterOption(title: 'Giant', options: []),
+  FilterOption(title: Size.small.displayName, options: []),
+  FilterOption(title: Size.medium.displayName, options: []),
+  FilterOption(title: Size.large.displayName, options: []),
+  FilterOption(title: Size.giant.displayName, options: []),
 ];
 
 List<FilterOption> genderFilterOptions = [
-  FilterOption(title: 'Male', options: []),
-  FilterOption(title: 'Female', options: []),
+  FilterOption(title: Gender.male.displayGender, options: []),
+  FilterOption(title: Gender.female.displayGender, options: []),
 ];
 
 List<FilterOption> ageFilterOptions = [
-  FilterOption(title: '< 1>', options: []),
+  FilterOption(title: '< 1', options: []),
   FilterOption(title: '1-4', options: []),
   FilterOption(title: '4-7', options: []),
   FilterOption(title: '7+', options: []),

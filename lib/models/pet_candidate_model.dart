@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:pet_rescues/core/constants/constants.dart';
 
@@ -9,13 +8,41 @@ enum PetType {
   cat,
 }
 
-enum Gender {
-  Male,
-  Female,
-  NotSure,
+enum Gender { male, female, notSure }
+
+extension GenderExtension on Gender {
+  String get displayGender {
+    switch (this) {
+      case Gender.male:
+        return 'Male';
+      case Gender.female:
+        return 'Female';
+      case Gender.notSure:
+        return 'NotSure';
+      default:
+        return '';
+    }
+  }
 }
 
-enum Size { Small, Medium, Large, Giant }
+enum Size { small, medium, large, giant }
+
+extension SizeExtension on Size {
+  String get displayName {
+    switch (this) {
+      case Size.small:
+        return 'Small';
+      case Size.medium:
+        return 'Medium';
+      case Size.large:
+        return 'Large';
+      case Size.giant:
+        return 'Giant';
+      default:
+        return '';
+    }
+  }
+}
 
 class PetBubble {
   final String? text;
@@ -70,8 +97,8 @@ List<PetCandidateModel> candidates = [
     id: '0',
     petType: PetType.dog,
     name: 'Puppy (charlie), 8',
-    gender: Gender.Male,
-    size: Size.Medium,
+    gender: Gender.male,
+    size: Size.medium,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/puppy/puppy1.jpg',
@@ -133,8 +160,8 @@ List<PetCandidateModel> candidates = [
     id: '1',
     petType: PetType.cat,
     name: 'Oreo , 2',
-    gender: Gender.Male,
-    size: Size.Small,
+    gender: Gender.male,
+    size: Size.small,
     city: 'Town',
     petPics: [
       'assets/images/pets/cats/oreo/oreo_1.jpeg',
@@ -180,8 +207,8 @@ List<PetCandidateModel> candidates = [
     id: '2',
     petType: PetType.dog,
     name: 'Six, 6',
-    gender: Gender.Female,
-    size: Size.Large,
+    gender: Gender.female,
+    size: Size.large,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/husky/husky1.jpg',
@@ -231,9 +258,9 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '3',
     petType: PetType.dog,
-    size: Size.Small,
+    size: Size.small,
     name: 'Five, 5',
-    gender: Gender.Female,
+    gender: Gender.female,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -244,8 +271,8 @@ List<PetCandidateModel> candidates = [
     id: '4',
     petType: PetType.dog,
     name: 'Four, 4',
-    gender: Gender.Male,
-    size: Size.Giant,
+    gender: Gender.male,
+    size: Size.giant,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -256,8 +283,8 @@ List<PetCandidateModel> candidates = [
     id: '5',
     petType: PetType.cat,
     name: 'Cat Three, 3',
-    gender: Gender.Female,
-    size: Size.Small,
+    gender: Gender.female,
+    size: Size.small,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -268,8 +295,8 @@ List<PetCandidateModel> candidates = [
     id: '6',
     petType: PetType.cat,
     name: 'Cat Two, 2',
-    gender: Gender.Male,
-    size: Size.Medium,
+    gender: Gender.male,
+    size: Size.medium,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -279,8 +306,8 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '7',
     name: 'One, 1',
-    gender: Gender.Male,
-    size: Size.Large,
+    gender: Gender.male,
+    size: Size.large,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -291,8 +318,8 @@ List<PetCandidateModel> candidates = [
     id: '8',
     petType: PetType.dog,
     name: 'Polly  (Paul), 10',
-    gender: Gender.Male,
-    size: Size.Giant,
+    gender: Gender.male,
+    size: Size.giant,
     city: 'Town',
     petPics: [
       Constants.logoPath,

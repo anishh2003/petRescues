@@ -16,13 +16,12 @@ class PetFilterToggle extends ConsumerStatefulWidget {
 }
 
 class _PetFilterToggleState extends ConsumerState<PetFilterToggle> {
-  int selectedOption = 1;
+  late int selectedOption;
 
-  void _handleOptionChange(int? value) {
-    setState(() {
-      selectedOption = value!;
-      Filter.setAnimalTypeFilter(value, ref);
-    });
+  @override
+  void initState() {
+    selectedOption = ref.read(appliedPetsToggleProvider.notifier).state.index;
+    super.initState();
   }
 
   @override
@@ -38,20 +37,29 @@ class _PetFilterToggleState extends ConsumerState<PetFilterToggle> {
             selectedOption: selectedOption,
             toggleValue: 1,
             imageScale: 100,
-            onChanged: _handleOptionChange,
+            onChanged: (int? value) {
+              setState(() {
+                selectedOption = value!;
+                Filter.setAnimalTypeFilter(value, ref);
+              });
+            },
           ),
         ),
         const SizedBox(width: 10.0),
         Expanded(
           child: PetToggleOption(
-            darkTheme: widget.darkTheme,
-            title: 'Dogs',
-            image: 'assets/images/black_dog_image.jpg',
-            selectedOption: selectedOption,
-            toggleValue: 2,
-            imageScale: 38,
-            onChanged: _handleOptionChange,
-          ),
+              darkTheme: widget.darkTheme,
+              title: 'Dogs',
+              image: 'assets/images/black_dog_image.jpg',
+              selectedOption: selectedOption,
+              toggleValue: 2,
+              imageScale: 38,
+              onChanged: (int? value) {
+                setState(() {
+                  selectedOption = value!;
+                  Filter.setAnimalTypeFilter(value, ref);
+                });
+              }),
         ),
       ],
     );
