@@ -5,6 +5,12 @@ import 'package:pet_rescues/core/providers/settings_provider.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
 import 'package:pet_rescues/features/filters/widgets/expansion_tile_options.dart';
 import 'package:pet_rescues/features/filters/widgets/filter_button.dart';
+import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/age_expansion.dart';
+import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/dontShow_expansion.dart';
+import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/gender_expansion.dart';
+import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/shelter_expansion.dart';
+import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/size_expansion.dart';
+import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/radius_expansion.dart';
 import 'package:pet_rescues/features/filters/widgets/pet_filter_toggle.dart';
 import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
@@ -51,13 +57,32 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                 const SizedBox(height: 20.0),
                 PetFilterToggle(darkTheme: darkTheme),
                 const SizedBox(height: 20.0),
-                SizedBox(
+                const SizedBox(
                   height: 360,
-                  child: ListView.builder(
-                    itemCount: filterMenuOptions.length,
-                    itemBuilder: (context, index) {
-                      return ExpansionTileOptions(menuIndex: index);
-                    },
+                  child:
+                      // ListView.builder(
+                      //   itemCount: filterMenuOptions.length,
+                      //   itemBuilder: (context, index) {
+                      //     return ExpansionTileOptions(menuIndex: index);
+                      //   },
+                      // ),
+                      SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        // ExpansionTileOptions(menuIndex: 0),
+                        RadiusExpansionTileOptions(),
+                        GenderExpansionTileOptions(),
+                        AgeExpansionTileOptions(),
+                        SizeExpansionTileOptions(),
+                        ShelterExpansionTileOptions(),
+                        DontShowExpansionTileOptions(),
+                        // ExpansionTileOptions(menuIndex: 1),
+                        // ExpansionTileOptions(menuIndex: 2),
+                        // ExpansionTileOptions(menuIndex: 3),
+                        // ExpansionTileOptions(menuIndex: 4),
+                        // ExpansionTileOptions(menuIndex: 5),
+                      ],
+                    ),
                   ),
                 ),
                 const Divider(height: 5),

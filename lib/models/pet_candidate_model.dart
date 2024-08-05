@@ -25,18 +25,18 @@ extension GenderExtension on Gender {
   }
 }
 
-enum Size { small, medium, large, giant }
+enum AnimalSize { small, medium, large, giant }
 
-extension SizeExtension on Size {
+extension SizeExtension on AnimalSize {
   String get displayName {
     switch (this) {
-      case Size.small:
+      case AnimalSize.small:
         return 'Small';
-      case Size.medium:
+      case AnimalSize.medium:
         return 'Medium';
-      case Size.large:
+      case AnimalSize.large:
         return 'Large';
-      case Size.giant:
+      case AnimalSize.giant:
         return 'Giant';
       default:
         return '';
@@ -66,7 +66,7 @@ class PetCandidateModel {
   PetType? petType;
   String? id;
   String? name;
-  Size size;
+  AnimalSize size;
   Gender gender;
 
   String? city;
@@ -98,7 +98,7 @@ List<PetCandidateModel> candidates = [
     petType: PetType.dog,
     name: 'Puppy (charlie), 8',
     gender: Gender.male,
-    size: Size.medium,
+    size: AnimalSize.medium,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/puppy/puppy1.jpg',
@@ -161,7 +161,7 @@ List<PetCandidateModel> candidates = [
     petType: PetType.cat,
     name: 'Oreo , 2',
     gender: Gender.male,
-    size: Size.small,
+    size: AnimalSize.small,
     city: 'Town',
     petPics: [
       'assets/images/pets/cats/oreo/oreo_1.jpeg',
@@ -208,7 +208,7 @@ List<PetCandidateModel> candidates = [
     petType: PetType.dog,
     name: 'Six, 6',
     gender: Gender.female,
-    size: Size.large,
+    size: AnimalSize.large,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/husky/husky1.jpg',
@@ -258,7 +258,7 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '3',
     petType: PetType.dog,
-    size: Size.small,
+    size: AnimalSize.small,
     name: 'Five, 5',
     gender: Gender.female,
     city: 'Town',
@@ -272,7 +272,7 @@ List<PetCandidateModel> candidates = [
     petType: PetType.dog,
     name: 'Four, 4',
     gender: Gender.male,
-    size: Size.giant,
+    size: AnimalSize.giant,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -284,7 +284,7 @@ List<PetCandidateModel> candidates = [
     petType: PetType.cat,
     name: 'Cat Three, 3',
     gender: Gender.female,
-    size: Size.small,
+    size: AnimalSize.small,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -296,7 +296,7 @@ List<PetCandidateModel> candidates = [
     petType: PetType.cat,
     name: 'Cat Two, 2',
     gender: Gender.male,
-    size: Size.medium,
+    size: AnimalSize.medium,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -307,7 +307,7 @@ List<PetCandidateModel> candidates = [
     id: '7',
     name: 'One, 1',
     gender: Gender.male,
-    size: Size.large,
+    size: AnimalSize.large,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -319,7 +319,7 @@ List<PetCandidateModel> candidates = [
     petType: PetType.dog,
     name: 'Polly  (Paul), 10',
     gender: Gender.male,
-    size: Size.giant,
+    size: AnimalSize.giant,
     city: 'Town',
     petPics: [
       Constants.logoPath,

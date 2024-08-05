@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
+import 'package:pet_rescues/models/filters_model.dart';
+import 'package:pet_rescues/models/pet_candidate_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -78,6 +80,17 @@ class UsersSettings {
   Future<void> setAnimalPreferenceFilterSettings(PetFilterType value) async {
     await _sharedPreferences.setString('AnimalFilter', value.toString());
   }
+
+  // FilterMenuOption getSizeFromString() {
+  //   String? value = _sharedPreferences.getString('Size');
+  //   return FilterMenuOption.values.firstWhere((e) => e.toString() == value,
+  //       orElse: () => FilterMenuOption(
+  //           title: AnimalSize.small.displayName, animalSizeOptions: []));
+  // }
+
+  // Future<void> setSizeOfAnimal(FilterMenuOption value) async {
+  //   await _sharedPreferences.setString('Size', value.title.toString());
+  // }
 }
 
 final initialiseSettingsProvider = FutureProvider<void>((ref) async {
