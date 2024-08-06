@@ -90,6 +90,16 @@ class UsersSettings {
     await _sharedPreferences.setInt('Gender', value);
   }
 
+  AnimalSize getUsersSizePreference() {
+    String? value = _sharedPreferences.getString('Size');
+    return AnimalSize.values
+        .firstWhere((e) => e.toString() == value, orElse: () => AnimalSize.all);
+  }
+
+  Future<void> setUsersSizePreference(AnimalSize value) async {
+    await _sharedPreferences.setString('Size', value.toString());
+  }
+
   // FilterMenuOption getSizeFromString() {
   //   String? value = _sharedPreferences.getString('Size');
   //   return FilterMenuOption.values.firstWhere((e) => e.toString() == value,
@@ -116,4 +126,8 @@ final initialiseSettingsProvider = FutureProvider<void>((ref) async {
   ref
       .read(appliedGenderFilterProvider.notifier)
       .update((state) => userSettings.getUsersGenderPreference());
+
+  ref
+      .read(appliedSizeFilterProvider.notifier)
+      .update((state) => userSettings.getUsersSizePreference());
 });

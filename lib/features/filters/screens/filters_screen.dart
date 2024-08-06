@@ -32,6 +32,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
 
     ref.read(usersSettingsProvider).setUsersGenderPreference(
         ref.read(appliedGenderFilterProvider.notifier).state);
+
+    ref.read(usersSettingsProvider).setUsersSizePreference(
+        ref.read(appliedSizeFilterProvider.notifier).state);
   }
 
   @override
@@ -89,6 +92,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                           (state) => ref.read(tempSelectedPetsToggleProvider));
                       ref.read(appliedGenderFilterProvider.notifier).update(
                           (state) => ref.read(tempGenderSelectedProvider));
+                      ref.read(appliedSizeFilterProvider.notifier).update(
+                          (state) => ref.read(tempSizeSelectedProvider));
                       saveUsersFilterOptionsToDevice();
 
                       Routemaster.of(context).pop();
@@ -111,6 +116,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                       ref
                           .read(appliedGenderFilterProvider.notifier)
                           .update((state) => Gender.notSure.index);
+                      ref
+                          .read(appliedSizeFilterProvider.notifier)
+                          .update((state) => AnimalSize.all);
                       saveUsersFilterOptionsToDevice();
                       Routemaster.of(context).pop();
                     },

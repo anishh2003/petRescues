@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
 import 'package:pet_rescues/models/filters_model.dart';
+import 'package:pet_rescues/models/pet_candidate_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 
 class SizeExpansionTileOptions extends ConsumerStatefulWidget {
@@ -13,11 +15,11 @@ class SizeExpansionTileOptions extends ConsumerStatefulWidget {
 
 class _SizeExpansionTileOptionsState
     extends ConsumerState<SizeExpansionTileOptions> {
-  int index = 0;
+  late int index;
 
   @override
   void initState() {
-    // index = ref.read(appliedPetsToggleProvider.notifier).state.index;
+    index = ref.read(appliedSizeFilterProvider.notifier).state.index;
     super.initState();
   }
 
@@ -51,6 +53,10 @@ class _SizeExpansionTileOptionsState
                     setState(() {
                       index = i;
                     });
+                    //set temporary gender value
+                    ref.read(tempSizeSelectedProvider.notifier).update((item) =>
+                        item = AnimalSize.values
+                            .firstWhere((e) => e.index == index));
                   },
                   child: ListTile(
                     leading: index == i

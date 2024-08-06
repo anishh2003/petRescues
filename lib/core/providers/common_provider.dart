@@ -18,6 +18,8 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   List<PetCandidateModel> filteredCandidates;
   var toggle = ref.watch(appliedPetsToggleProvider);
   var userSelectedGender = ref.watch(appliedGenderFilterProvider);
+  var userSelectedSize = ref.watch(appliedSizeFilterProvider);
+
   if (toggle == PetFilterType.cat) {
     filteredCandidates =
         candidates.where((item) => item.petType == PetType.cat).toList();
@@ -29,29 +31,24 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   }
 
   if (userSelectedGender != Gender.notSure.index) {
-    return filteredCandidates
+    filteredCandidates = filteredCandidates
         .where((item) => item.gender.index == userSelectedGender)
         .toList();
+  } else {
+    filteredCandidates = filteredCandidates
+        .where((item) => item.gender.index != Gender.notSure.index)
+        .toList();
   }
+
+  if (userSelectedSize != AnimalSize.all) {
+    filteredCandidates = filteredCandidates
+        .where((item) => item.size == userSelectedSize)
+        .toList();
+  } else {
+    filteredCandidates = filteredCandidates
+        .where((item) => item.size != AnimalSize.all)
+        .toList();
+  }
+
   return filteredCandidates;
 });
-
-
-// final petListProvider = Provider<List<PetCandidateModel>>((ref) {
-//   List<PetCandidateModel> petList = candidates;
-//   var toggle = ref.watch(appliedPetsToggleProvider);
-//   var animalGender = ref.watch(appliedGenderFilterProvider);
-//   var userSelectedGender = ref.watch(appliedGenderFilterProvider);
-//   if (toggle == PetFilterType.cat) {
-//     petList.where((item) => item.petType == PetType.cat).toList();
-
-//     petList.where((item) => item.gender == userSelectedGender).toList();
-
-//     return petList;
-//   } else if (toggle == PetFilterType.dog) {
-//     return candidates.where((item) => item.petType == PetType.dog).toList();
-//   } else {
-//     return candidates;
-//   }
-// });
-

@@ -31,6 +31,18 @@ final appliedGenderFilterProvider = StateProvider<int>((ref) {
 });
 
 //**--------------------------------------------------------------------**//
+
+//**-------------------- Gender selection ------------------------------**//
+
+final tempSizeSelectedProvider = StateProvider<AnimalSize>((ref) {
+  return AnimalSize.all;
+});
+
+final appliedSizeFilterProvider = StateProvider<AnimalSize>((ref) {
+  return AnimalSize.all;
+});
+
+//**--------------------------------------------------------------------**//
 class Filter {
   static void setAnimalTypeFilter(int? value, WidgetRef ref) {
     if (value == PetFilterType.cat.index) {

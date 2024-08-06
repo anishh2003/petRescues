@@ -51,31 +51,35 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
                   top: 50,
                   bottom: 40,
                 ),
-                child: AppinioSwiper(
-                  invertAngleOnBottomDrag: true,
-                  backgroundCardCount: 0,
-                  swipeOptions:
-                      const SwipeOptions.only(left: true, right: true),
-                  controller: controller,
-                  onCardPositionChanged: (
-                    SwiperPosition position,
-                  ) {
-                    //debugPrint('${position.offset.toAxisDirection()}, '
-                    //    '${position.offset}, '
-                    //    '${position.angle}');
-                  },
-                  onSwipeEnd: _swipeEnd,
-                  onEnd: _onEnd,
-                  cardCount: petList.length,
-                  cardBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                        onTap: () =>
-                            navigateToPetDetails(context, petList[index]),
-                        child: PetCard(
-                          candidate: petList[index],
-                        ));
-                  },
-                ),
+                child: petList.isNotEmpty
+                    ? AppinioSwiper(
+                        invertAngleOnBottomDrag: true,
+                        backgroundCardCount: 0,
+                        swipeOptions:
+                            const SwipeOptions.only(left: true, right: true),
+                        controller: controller,
+                        onCardPositionChanged: (
+                          SwiperPosition position,
+                        ) {
+                          //debugPrint('${position.offset.toAxisDirection()}, '
+                          //    '${position.offset}, '
+                          //    '${position.angle}');
+                        },
+                        onSwipeEnd: _swipeEnd,
+                        onEnd: _onEnd,
+                        cardCount: petList.length,
+                        cardBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                              onTap: () =>
+                                  navigateToPetDetails(context, petList[index]),
+                              child: PetCard(
+                                candidate: petList[index],
+                              ));
+                        },
+                      )
+                    : Center(
+                        child: Text("No pets available at this time"),
+                      ),
               ),
             ),
             IconTheme.merge(

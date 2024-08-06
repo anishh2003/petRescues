@@ -25,7 +25,7 @@ extension GenderExtension on Gender {
   }
 }
 
-enum AnimalSize { small, medium, large, giant }
+enum AnimalSize { small, medium, large, giant, all }
 
 extension SizeExtension on AnimalSize {
   String get displayName {
@@ -305,7 +305,8 @@ List<PetCandidateModel> candidates = [
   ),
   PetCandidateModel(
     id: '7',
-    name: 'One, 1',
+    name: 'Cat One, 1',
+    petType: PetType.cat,
     gender: Gender.male,
     size: AnimalSize.large,
     city: 'Town',
