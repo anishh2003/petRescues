@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
 import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 
@@ -13,17 +14,18 @@ class GenderExpansionTileOptions extends ConsumerStatefulWidget {
 
 class _GenderExpansionTileOptionsState
     extends ConsumerState<GenderExpansionTileOptions> {
-  int index = 0;
+  late int index;
 
   @override
   void initState() {
-    // index = ref.read(appliedPetsToggleProvider.notifier).state.index;
+    index = ref.read(appliedGenderFilterProvider.notifier).state;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var darkTheme = ref.watch(darkThemeProvider);
+
     return ExpansionTile(
       expandedAlignment: Alignment.centerLeft,
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
@@ -51,6 +53,10 @@ class _GenderExpansionTileOptionsState
                     setState(() {
                       index = i;
                     });
+                    //set temporary gender value
+                    ref
+                        .read(tempGenderSelectedProvider.notifier)
+                        .update((genderIndex) => genderIndex = index);
                   },
                   child: ListTile(
                     leading: index == i

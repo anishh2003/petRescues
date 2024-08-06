@@ -81,6 +81,15 @@ class UsersSettings {
     await _sharedPreferences.setString('AnimalFilter', value.toString());
   }
 
+  int getUsersGenderPreference() {
+    int? value = _sharedPreferences.getInt('Gender');
+    return value ?? Gender.notSure.index;
+  }
+
+  Future<void> setUsersGenderPreference(int value) async {
+    await _sharedPreferences.setInt('Gender', value);
+  }
+
   // FilterMenuOption getSizeFromString() {
   //   String? value = _sharedPreferences.getString('Size');
   //   return FilterMenuOption.values.firstWhere((e) => e.toString() == value,
@@ -103,4 +112,8 @@ final initialiseSettingsProvider = FutureProvider<void>((ref) async {
   ref
       .read(appliedPetsToggleProvider.notifier)
       .update((state) => userSettings.getPetFilterTypeFromString());
+
+  ref
+      .read(appliedGenderFilterProvider.notifier)
+      .update((state) => userSettings.getUsersGenderPreference());
 });

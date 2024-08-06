@@ -20,10 +20,17 @@ final sizeProvider = StateProvider<FilterMenuOption>((ref) {
   return FilterMenuOption(title: AnimalSize.small.displayName);
 });
 
-final genderProvider = StateProvider<FilterMenuOption>((ref) {
-  return FilterMenuOption(title: Gender.male.displayGender);
+//**-------------------- Gender selection ------------------------------**//
+
+final tempGenderSelectedProvider = StateProvider<int>((ref) {
+  return 0;
 });
 
+final appliedGenderFilterProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
+//**--------------------------------------------------------------------**//
 class Filter {
   static void setAnimalTypeFilter(int? value, WidgetRef ref) {
     if (value == PetFilterType.cat.index) {

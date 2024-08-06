@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/providers/settings_provider.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
-import 'package:pet_rescues/features/filters/widgets/expansion_tile_options.dart';
 import 'package:pet_rescues/features/filters/widgets/filter_button.dart';
 import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/age_expansion.dart';
 import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/dontShow_expansion.dart';
@@ -13,6 +12,7 @@ import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.da
 import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/radius_expansion.dart';
 import 'package:pet_rescues/features/filters/widgets/pet_filter_toggle.dart';
 import 'package:pet_rescues/models/filters_model.dart';
+import 'package:pet_rescues/models/pet_candidate_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 import 'package:routemaster/routemaster.dart';
 
@@ -29,6 +29,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   void saveUsersFilterOptionsToDevice() {
     ref.read(usersSettingsProvider).setAnimalPreferenceFilterSettings(
         ref.read(appliedPetsToggleProvider.notifier).state);
+
+    ref.read(usersSettingsProvider).setUsersGenderPreference(
+        ref.read(appliedGenderFilterProvider.notifier).state);
   }
 
   @override
@@ -59,28 +62,15 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                 const SizedBox(height: 20.0),
                 const SizedBox(
                   height: 360,
-                  child:
-                      // ListView.builder(
-                      //   itemCount: filterMenuOptions.length,
-                      //   itemBuilder: (context, index) {
-                      //     return ExpansionTileOptions(menuIndex: index);
-                      //   },
-                      // ),
-                      SingleChildScrollView(
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        // ExpansionTileOptions(menuIndex: 0),
                         RadiusExpansionTileOptions(),
                         GenderExpansionTileOptions(),
                         AgeExpansionTileOptions(),
                         SizeExpansionTileOptions(),
                         ShelterExpansionTileOptions(),
                         DontShowExpansionTileOptions(),
-                        // ExpansionTileOptions(menuIndex: 1),
-                        // ExpansionTileOptions(menuIndex: 2),
-                        // ExpansionTileOptions(menuIndex: 3),
-                        // ExpansionTileOptions(menuIndex: 4),
-                        // ExpansionTileOptions(menuIndex: 5),
                       ],
                     ),
                   ),
@@ -97,7 +87,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                     onPressed: () {
                       ref.read(appliedPetsToggleProvider.notifier).update(
                           (state) => ref.read(tempSelectedPetsToggleProvider));
-
+                      ref.read(appliedGenderFilterProvider.notifier).update(
+                          (state) => ref.read(tempGenderSelectedProvider));
                       saveUsersFilterOptionsToDevice();
 
                       Routemaster.of(context).pop();
@@ -116,6 +107,11 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                       ref
                           .read(appliedPetsToggleProvider.notifier)
                           .update((state) => PetFilterType.none);
+
+                      ref
+                          .read(appliedGenderFilterProvider.notifier)
+                          .update((state) => Gender.notSure.index);
+                      saveUsersFilterOptionsToDevice();
                       Routemaster.of(context).pop();
                     },
                   ),
