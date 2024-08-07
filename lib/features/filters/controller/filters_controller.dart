@@ -22,12 +22,12 @@ final sizeProvider = StateProvider<FilterMenuOption>((ref) {
 
 //**-------------------- Gender selection ------------------------------**//
 
-final tempGenderSelectedProvider = StateProvider<int>((ref) {
-  return 0;
+final tempGenderSelectedProvider = StateProvider<List<GenderOption>>((ref) {
+  return tempGenderFilterOptions;
 });
 
-final appliedGenderFilterProvider = StateProvider<int>((ref) {
-  return 0;
+final appliedGenderFilterProvider = StateProvider<List<GenderOption>>((ref) {
+  return genderFilterOptions;
 });
 
 //**--------------------------------------------------------------------**//

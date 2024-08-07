@@ -77,7 +77,7 @@ class _PetsScreenState extends ConsumerState<PetsScreen> {
                               ));
                         },
                       )
-                    : Center(
+                    : const Center(
                         child: Text("No pets available at this time"),
                       ),
               ),

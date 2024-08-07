@@ -41,7 +41,7 @@ class _SizeExpansionTileOptionsState
       ),
       children: [
         SizedBox(
-          height: 200,
+          height: 20,
           child: Scrollbar(
             trackVisibility: true,
             child: ListView.builder(

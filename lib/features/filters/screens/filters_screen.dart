@@ -113,9 +113,11 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                           .read(appliedPetsToggleProvider.notifier)
                           .update((state) => PetFilterType.none);
 
-                      ref
-                          .read(appliedGenderFilterProvider.notifier)
-                          .update((state) => Gender.notSure.index);
+                      ref.read(appliedGenderFilterProvider.notifier).update(
+                          (state) => state
+                              .map(
+                                  (item) => item.copyWith(checkboxValue: false))
+                              .toList());
                       ref
                           .read(appliedSizeFilterProvider.notifier)
                           .update((state) => AnimalSize.all);

@@ -18,13 +18,13 @@ class _GenderExpansionTileOptionsState
 
   @override
   void initState() {
-    index = ref.read(appliedGenderFilterProvider.notifier).state;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var darkTheme = ref.watch(darkThemeProvider);
+    var genderOptions = ref.watch(tempGenderSelectedProvider);
 
     return ExpansionTile(
       expandedAlignment: Alignment.centerLeft,
@@ -48,34 +48,25 @@ class _GenderExpansionTileOptionsState
               shrinkWrap: true,
               itemCount: filterMenuOptions[2].genderOptions!.length,
               itemBuilder: (context, i) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      index = i;
-                    });
-                    //set temporary gender value
-                    ref
-                        .read(tempGenderSelectedProvider.notifier)
-                        .update((genderIndex) => genderIndex = index);
-                  },
-                  child: ListTile(
-                    leading: index == i
-                        ? Icon(
-                            Icons.check_box,
-                            color: darkTheme
-                                ? Theme.of(context).colorScheme.primaryContainer
-                                : Theme.of(context).colorScheme.onSurface,
-                          )
-                        : Icon(
-                            Icons.check_box_outline_blank,
-                            color: darkTheme
-                                ? Theme.of(context).colorScheme.primaryContainer
-                                : Theme.of(context).colorScheme.onSurface,
-                          ),
-                    title: Text(
-                      filterMenuOptions[2].genderOptions![i].title,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                return ListTile(
+                  leading: Checkbox(
+                    value: genderOptions[i].checkboxValue,
+                    onChanged: (bool? value) {
+                      ref
+                          .read(tempGenderSelectedProvider.notifier)
+                          .update((state) {
+                        final updatedOptions = [...state];
+                        updatedOptions[i] = GenderOption(
+                          title: updatedOptions[i].title,
+                          checkboxValue: value ?? false,
+                        );
+                        return updatedOptions;
+                      });
+                    },
+                  ),
+                  title: Text(
+                    filterMenuOptions[2].genderOptions![i].title,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 );
               },

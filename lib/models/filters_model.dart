@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/foundation.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 class FilterMenuOption {
@@ -23,32 +23,112 @@ class FilterMenuOption {
 
 class FilterOptions {
   final String title;
+  final bool checkboxValue;
 
-  FilterOptions({required this.title});
+  FilterOptions({
+    required this.title,
+    required this.checkboxValue,
+  });
+
+  FilterOptions copyWith({
+    String? title,
+    bool? checkboxValue,
+  }) {
+    return FilterOptions(
+      title: title ?? this.title,
+      checkboxValue: checkboxValue ?? this.checkboxValue,
+    );
+  }
 }
 
 class RadiusOption extends FilterOptions {
-  RadiusOption({required super.title});
+  RadiusOption({required super.title, required super.checkboxValue});
+
+  @override
+  RadiusOption copyWith({
+    String? title,
+    bool? checkboxValue,
+  }) {
+    return RadiusOption(
+      title: title ?? this.title,
+      checkboxValue: checkboxValue ?? this.checkboxValue,
+    );
+  }
 }
 
 class AnimalSizeOption extends FilterOptions {
-  AnimalSizeOption({required super.title});
+  AnimalSizeOption({required super.title, required super.checkboxValue});
+
+  @override
+  AnimalSizeOption copyWith({
+    String? title,
+    bool? checkboxValue,
+  }) {
+    return AnimalSizeOption(
+      title: title ?? this.title,
+      checkboxValue: checkboxValue ?? this.checkboxValue,
+    );
+  }
 }
 
 class GenderOption extends FilterOptions {
-  GenderOption({required super.title});
+  GenderOption({required super.title, required super.checkboxValue});
+
+  @override
+  GenderOption copyWith({
+    String? title,
+    bool? checkboxValue,
+  }) {
+    return GenderOption(
+      title: title ?? this.title,
+      checkboxValue: checkboxValue ?? this.checkboxValue,
+    );
+  }
 }
 
 class AgeOption extends FilterOptions {
-  AgeOption({required super.title});
+  AgeOption({required super.title, required super.checkboxValue});
+
+  @override
+  AgeOption copyWith({
+    String? title,
+    bool? checkboxValue,
+  }) {
+    return AgeOption(
+      title: title ?? this.title,
+      checkboxValue: checkboxValue ?? this.checkboxValue,
+    );
+  }
 }
 
 class ShelterOption extends FilterOptions {
-  ShelterOption({required super.title});
+  ShelterOption({required super.title, required super.checkboxValue});
+
+  @override
+  ShelterOption copyWith({
+    String? title,
+    bool? checkboxValue,
+  }) {
+    return ShelterOption(
+      title: title ?? this.title,
+      checkboxValue: checkboxValue ?? this.checkboxValue,
+    );
+  }
 }
 
 class DontShowOption extends FilterOptions {
-  DontShowOption({required super.title});
+  DontShowOption({required super.title, required super.checkboxValue});
+
+  @override
+  DontShowOption copyWith({
+    String? title,
+    bool? checkboxValue,
+  }) {
+    return DontShowOption(
+      title: title ?? this.title,
+      checkboxValue: checkboxValue ?? this.checkboxValue,
+    );
+  }
 }
 
 List<FilterMenuOption> filterMenuOptions = [
@@ -62,40 +142,42 @@ List<FilterMenuOption> filterMenuOptions = [
 ];
 
 List<RadiusOption> radiusFilterOptions = [
-  RadiusOption(title: '5 miles'),
-  RadiusOption(title: '10 miles'),
-  RadiusOption(title: '20 miles'),
-  RadiusOption(title: '20+ miles'),
+  RadiusOption(title: '5 miles', checkboxValue: false),
+  RadiusOption(title: '10 miles', checkboxValue: false),
+  RadiusOption(title: '20 miles', checkboxValue: false),
+  RadiusOption(title: '20+ miles', checkboxValue: false),
 ];
 
 List<AnimalSizeOption> sizeFilterOptions = [
-  AnimalSizeOption(title: AnimalSize.small.displayName),
-  AnimalSizeOption(title: AnimalSize.medium.displayName),
-  AnimalSizeOption(title: AnimalSize.large.displayName),
-  AnimalSizeOption(title: AnimalSize.giant.displayName),
+  AnimalSizeOption(title: AnimalSize.small.displayName, checkboxValue: false),
+  AnimalSizeOption(title: AnimalSize.medium.displayName, checkboxValue: false),
+  AnimalSizeOption(title: AnimalSize.large.displayName, checkboxValue: false),
+  AnimalSizeOption(title: AnimalSize.giant.displayName, checkboxValue: false),
 ];
 
 List<GenderOption> genderFilterOptions = [
-  GenderOption(title: Gender.male.displayGender),
-  GenderOption(title: Gender.female.displayGender),
+  GenderOption(title: Gender.male.displayGender, checkboxValue: false),
+  GenderOption(title: Gender.female.displayGender, checkboxValue: false),
 ];
 
+List<GenderOption> tempGenderFilterOptions = [];
+
 List<AgeOption> ageFilterOptions = [
-  AgeOption(title: '< 1'),
-  AgeOption(title: '1-4'),
-  AgeOption(title: '4-7'),
-  AgeOption(title: '7+'),
+  AgeOption(title: '< 1', checkboxValue: false),
+  AgeOption(title: '1-4', checkboxValue: false),
+  AgeOption(title: '4-7', checkboxValue: false),
+  AgeOption(title: '7+', checkboxValue: false),
 ];
 
 List<ShelterOption> shelterFilterOptions = [
-  ShelterOption(title: 'Dali dog Rescue'),
-  ShelterOption(title: 'Be Kind Rescue'),
-  ShelterOption(title: 'Love underdogs'),
-  ShelterOption(title: 'Miracle\'s Mission'),
+  ShelterOption(title: 'Dali dog Rescue', checkboxValue: false),
+  ShelterOption(title: 'Be Kind Rescue', checkboxValue: false),
+  ShelterOption(title: 'Love underdogs', checkboxValue: false),
+  ShelterOption(title: 'Miracle\'s Mission', checkboxValue: false),
 ];
 
 List<DontShowOption> dontShowFilterOptions = [
-  DontShowOption(title: 'Unknown with children'),
-  DontShowOption(title: 'Unknown with dogs'),
-  DontShowOption(title: 'Unknown with cats'),
+  DontShowOption(title: 'Unknown with children', checkboxValue: false),
+  DontShowOption(title: 'Unknown with dogs', checkboxValue: false),
+  DontShowOption(title: 'Unknown with cats', checkboxValue: false),
 ];

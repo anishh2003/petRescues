@@ -81,14 +81,38 @@ class UsersSettings {
     await _sharedPreferences.setString('AnimalFilter', value.toString());
   }
 
-  int getUsersGenderPreference() {
-    int? value = _sharedPreferences.getInt('Gender');
-    return value ?? Gender.notSure.index;
+  List<GenderOption> getUsersGenderPreference() {
+    List<String> stringList = _sharedPreferences.getStringList('Gender') ?? [];
+
+    // Convert the list of strings back to a list of GenderOption objects.
+    for (int i = 0; i < genderFilterOptions.length; i++) {
+      // Safely update checkboxValue based on stringList values
+      if (i < stringList.length) {
+        genderFilterOptions[i]
+            .copyWith(checkboxValue: stringList[i].toLowerCase() == 'true');
+      } else {
+        // If stringList is shorter, set a default value
+        genderFilterOptions[i]
+            .copyWith(checkboxValue: false); // Or some default value
+      }
+    }
+
+    tempGenderFilterOptions = genderFilterOptions.toList();
+
+    return genderFilterOptions;
   }
 
-  Future<void> setUsersGenderPreference(int value) async {
-    await _sharedPreferences.setInt('Gender', value);
+  Future<void> setUsersGenderPreference(List<GenderOption> value) async {
+    // Convert GenderOption list to a list of strings
+    List<String> stringList = value
+        .map((genderOption) => genderOption.checkboxValue.toString())
+        .toList();
+    await _sharedPreferences.setStringList('Gender', stringList);
   }
+
+  // Future<void> setUsersGenderPreference(List<bool> value) async {
+  //   await _sharedPreferences.setStringList('Gender',value.map((genderOption) => genderOption.toString()).toList());
+  // }
 
   AnimalSize getUsersSizePreference() {
     String? value = _sharedPreferences.getString('Size');
