@@ -118,9 +118,13 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                               .map(
                                   (item) => item.copyWith(checkboxValue: false))
                               .toList());
-                      ref
-                          .read(appliedSizeFilterProvider.notifier)
-                          .update((state) => AnimalSize.all);
+
+                      ref.read(appliedSizeFilterProvider.notifier).update(
+                          (state) => state
+                              .map(
+                                  (item) => item.copyWith(checkboxValue: false))
+                              .toList());
+
                       saveUsersFilterOptionsToDevice();
                       Routemaster.of(context).pop();
                     },

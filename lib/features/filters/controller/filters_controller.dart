@@ -34,12 +34,12 @@ final appliedGenderFilterProvider = StateProvider<List<GenderOption>>((ref) {
 
 //**-------------------- Gender selection ------------------------------**//
 
-final tempSizeSelectedProvider = StateProvider<AnimalSize>((ref) {
-  return AnimalSize.all;
+final tempSizeSelectedProvider = StateProvider<List<AnimalSizeOption>>((ref) {
+  return tempSizeFilterOptions;
 });
 
-final appliedSizeFilterProvider = StateProvider<AnimalSize>((ref) {
-  return AnimalSize.all;
+final appliedSizeFilterProvider = StateProvider<List<AnimalSizeOption>>((ref) {
+  return sizeFilterOptions;
 });
 
 //**--------------------------------------------------------------------**//

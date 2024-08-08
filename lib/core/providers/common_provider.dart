@@ -8,6 +8,8 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   var userSelectedGender = ref.watch(appliedGenderFilterProvider);
   var userSelectedSize = ref.watch(appliedSizeFilterProvider);
 
+  //-----------Pet type Filtering ----------------------------------------//
+
   if (toggle == PetFilterType.cat) {
     filteredCandidates =
         candidates.where((item) => item.petType == PetType.cat).toList();
@@ -17,6 +19,7 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   } else {
     filteredCandidates = candidates;
   }
+  //-----------Gender Filtering ----------------------------------------//
 
   if (userSelectedGender[Gender.male.index].checkboxValue &&
       userSelectedGender[Gender.female.index].checkboxValue == false) {
@@ -31,25 +34,35 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
     filteredCandidates;
   }
 
-  // if (userSelectedGender != Gender.notSure.index) {
-  //   filteredCandidates = filteredCandidates
-  //       .where((item) => item.gender.index == userSelectedGender)
-  //       .toList();
-  // } else {
-  //   filteredCandidates = filteredCandidates
-  //       .where((item) => item.gender.index != Gender.notSure.index)
-  //       .toList();
-  // }
+//---------------  Animal Size Filtering --------------------------------//
 
-  // if (userSelectedSize != AnimalSize.all) {
-  //   filteredCandidates = filteredCandidates
-  //       .where((item) => item.size == userSelectedSize)
-  //       .toList();
-  // } else {
-  //   filteredCandidates = filteredCandidates
-  //       .where((item) => item.size != AnimalSize.all)
-  //       .toList();
-  // }
+  // Step 1: Identify selected sizes
+  List<AnimalSize> selectedSizes = userSelectedSize
+      .where((option) => option.checkboxValue)
+      .map((option) {
+        if (option.title == AnimalSize.small.displayName) {
+          return AnimalSize.small;
+        } else if (option.title == AnimalSize.medium.displayName) {
+          return AnimalSize.medium;
+        } else if (option.title == AnimalSize.large.displayName) {
+          return AnimalSize.large;
+        } else if (option.title == AnimalSize.giant.displayName) {
+          return AnimalSize.giant;
+        } else {
+          return null; // Handle unexpected cases
+        }
+      })
+      .whereType<AnimalSize>()
+      .toList();
+
+  if (selectedSizes.isNotEmpty) {
+    // Step 2: Filter candidates by selected sizes
+    filteredCandidates = filteredCandidates.where((candidate) {
+      return selectedSizes.contains(candidate.size);
+    }).toList();
+  }
 
   return filteredCandidates;
 });
+
+//--------------------------------------------------------------------------//

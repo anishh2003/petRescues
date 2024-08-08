@@ -148,6 +148,8 @@ List<RadiusOption> radiusFilterOptions = [
   RadiusOption(title: '20+ miles', checkboxValue: false),
 ];
 
+List<AnimalSizeOption> tempSizeFilterOptions = [];
+
 List<AnimalSizeOption> sizeFilterOptions = [
   AnimalSizeOption(title: AnimalSize.small.displayName, checkboxValue: false),
   AnimalSizeOption(title: AnimalSize.medium.displayName, checkboxValue: false),
@@ -155,12 +157,12 @@ List<AnimalSizeOption> sizeFilterOptions = [
   AnimalSizeOption(title: AnimalSize.giant.displayName, checkboxValue: false),
 ];
 
+List<GenderOption> tempGenderFilterOptions = [];
+
 List<GenderOption> genderFilterOptions = [
   GenderOption(title: Gender.male.displayGender, checkboxValue: false),
   GenderOption(title: Gender.female.displayGender, checkboxValue: false),
 ];
-
-List<GenderOption> tempGenderFilterOptions = [];
 
 List<AgeOption> ageFilterOptions = [
   AgeOption(title: '< 1', checkboxValue: false),

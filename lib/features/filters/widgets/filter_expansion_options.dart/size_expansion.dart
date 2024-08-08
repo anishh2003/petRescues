@@ -19,13 +19,13 @@ class _SizeExpansionTileOptionsState
 
   @override
   void initState() {
-    index = ref.read(appliedSizeFilterProvider.notifier).state.index;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var darkTheme = ref.watch(darkThemeProvider);
+    var sizeOptions = ref.watch(tempSizeSelectedProvider);
     return ExpansionTile(
       expandedAlignment: Alignment.centerLeft,
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
@@ -41,41 +41,32 @@ class _SizeExpansionTileOptionsState
       ),
       children: [
         SizedBox(
-          height: 20,
+          height: 200,
           child: Scrollbar(
             trackVisibility: true,
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: filterMenuOptions[1].animalSizeOptions!.length,
               itemBuilder: (context, i) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      index = i;
-                    });
-                    //set temporary gender value
-                    ref.read(tempSizeSelectedProvider.notifier).update((item) =>
-                        item = AnimalSize.values
-                            .firstWhere((e) => e.index == index));
-                  },
-                  child: ListTile(
-                    leading: index == i
-                        ? Icon(
-                            Icons.check_box,
-                            color: darkTheme
-                                ? Theme.of(context).colorScheme.primaryContainer
-                                : Theme.of(context).colorScheme.onSurface,
-                          )
-                        : Icon(
-                            Icons.check_box_outline_blank,
-                            color: darkTheme
-                                ? Theme.of(context).colorScheme.primaryContainer
-                                : Theme.of(context).colorScheme.onSurface,
-                          ),
-                    title: Text(
-                      filterMenuOptions[1].animalSizeOptions![i].title,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                return ListTile(
+                  leading: Checkbox(
+                    value: sizeOptions[i].checkboxValue,
+                    onChanged: (bool? value) {
+                      ref
+                          .read(tempSizeSelectedProvider.notifier)
+                          .update((state) {
+                        final updatedOptions = [...state];
+                        updatedOptions[i] = AnimalSizeOption(
+                          title: updatedOptions[i].title,
+                          checkboxValue: value ?? false,
+                        );
+                        return updatedOptions;
+                      });
+                    },
+                  ),
+                  title: Text(
+                    filterMenuOptions[1].animalSizeOptions![i].title,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 );
               },

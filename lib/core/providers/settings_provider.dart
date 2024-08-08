@@ -110,18 +110,34 @@ class UsersSettings {
     await _sharedPreferences.setStringList('Gender', stringList);
   }
 
-  // Future<void> setUsersGenderPreference(List<bool> value) async {
-  //   await _sharedPreferences.setStringList('Gender',value.map((genderOption) => genderOption.toString()).toList());
-  // }
+  List<AnimalSizeOption> getUsersSizePreference() {
+    List<String>? stringList = _sharedPreferences.getStringList('Size');
 
-  AnimalSize getUsersSizePreference() {
-    String? value = _sharedPreferences.getString('Size');
-    return AnimalSize.values
-        .firstWhere((e) => e.toString() == value, orElse: () => AnimalSize.all);
+    // Convert the list of strings back to a list of GenderOption objects.
+    if (stringList != null) {
+      for (int i = 0; i < sizeFilterOptions.length; i++) {
+        // Safely update checkboxValue based on stringList values
+        if (i < stringList.length) {
+          sizeFilterOptions[i]
+              .copyWith(checkboxValue: stringList[i].toLowerCase() == 'true');
+        } else {
+          // If stringList is shorter, set a default value
+          sizeFilterOptions[i]
+              .copyWith(checkboxValue: false); // Or some default value
+        }
+      }
+    }
+
+    tempSizeFilterOptions = sizeFilterOptions.toList();
+
+    return sizeFilterOptions;
   }
 
-  Future<void> setUsersSizePreference(AnimalSize value) async {
-    await _sharedPreferences.setString('Size', value.toString());
+  Future<void> setUsersSizePreference(List<AnimalSizeOption> value) async {
+    // Convert AnimalSizeOption list to a list of strings
+    List<String> stringList =
+        value.map((animalSize) => animalSize.checkboxValue.toString()).toList();
+    await _sharedPreferences.setStringList('Size', stringList);
   }
 
   // FilterMenuOption getSizeFromString() {
