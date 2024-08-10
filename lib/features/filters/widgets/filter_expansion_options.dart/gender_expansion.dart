@@ -14,13 +14,6 @@ class GenderExpansionTileOptions extends ConsumerStatefulWidget {
 
 class _GenderExpansionTileOptionsState
     extends ConsumerState<GenderExpansionTileOptions> {
-  late int index;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     var darkTheme = ref.watch(darkThemeProvider);

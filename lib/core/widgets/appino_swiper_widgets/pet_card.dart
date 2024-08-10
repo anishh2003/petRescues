@@ -64,7 +64,7 @@ class PetCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      candidate.name!,
+                      '${candidate.name!} , ${candidate.age}',
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,

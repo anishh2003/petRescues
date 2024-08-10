@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 class FilterMenuOption {
@@ -164,11 +163,12 @@ List<GenderOption> genderFilterOptions = [
   GenderOption(title: Gender.female.displayGender, checkboxValue: false),
 ];
 
+List<AgeOption> tempAgeFilterOptions = [];
 List<AgeOption> ageFilterOptions = [
-  AgeOption(title: '< 1', checkboxValue: false),
-  AgeOption(title: '1-4', checkboxValue: false),
-  AgeOption(title: '4-7', checkboxValue: false),
-  AgeOption(title: '7+', checkboxValue: false),
+  AgeOption(title: AnimalAge.lessThanOne.displayName, checkboxValue: false),
+  AgeOption(title: AnimalAge.oneToFour.displayName, checkboxValue: false),
+  AgeOption(title: AnimalAge.fourToSeven.displayName, checkboxValue: false),
+  AgeOption(title: AnimalAge.sevenPlus.displayName, checkboxValue: false),
 ];
 
 List<ShelterOption> shelterFilterOptions = [

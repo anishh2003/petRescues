@@ -44,6 +44,25 @@ extension SizeExtension on AnimalSize {
   }
 }
 
+enum AnimalAge { lessThanOne, oneToFour, fourToSeven, sevenPlus }
+
+extension AgeExtension on AnimalAge {
+  String get displayName {
+    switch (this) {
+      case AnimalAge.lessThanOne:
+        return '< 1';
+      case AnimalAge.oneToFour:
+        return '1-4';
+      case AnimalAge.fourToSeven:
+        return '4-7';
+      case AnimalAge.sevenPlus:
+        return '7+';
+      default:
+        return '';
+    }
+  }
+}
+
 class PetBubble {
   final String? text;
   final IconData? icon;
@@ -68,6 +87,7 @@ class PetCandidateModel {
   String? name;
   AnimalSize size;
   Gender gender;
+  int age;
 
   String? city;
   String? description;
@@ -83,6 +103,7 @@ class PetCandidateModel {
     this.name,
     required this.size,
     required this.gender,
+    required this.age,
     this.city,
     this.description,
     this.petPics,
@@ -96,9 +117,10 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '0',
     petType: PetType.dog,
-    name: 'Puppy (charlie), 8',
+    name: 'Puppy (charlie)',
     gender: Gender.male,
     size: AnimalSize.medium,
+    age: 8,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/puppy/puppy1.jpg',
@@ -159,9 +181,10 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '1',
     petType: PetType.cat,
-    name: 'Oreo , 2',
+    name: 'Oreo',
     gender: Gender.male,
     size: AnimalSize.small,
+    age: 2,
     city: 'Town',
     petPics: [
       'assets/images/pets/cats/oreo/oreo_1.jpeg',
@@ -206,9 +229,10 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '2',
     petType: PetType.dog,
-    name: 'Six, 6',
+    name: 'Six',
     gender: Gender.female,
     size: AnimalSize.large,
+    age: 6,
     city: 'Town',
     petPics: [
       'assets/images/pets/dogs/husky/husky1.jpg',
@@ -259,8 +283,9 @@ List<PetCandidateModel> candidates = [
     id: '3',
     petType: PetType.dog,
     size: AnimalSize.small,
-    name: 'Five, 5',
+    name: 'Dog Five',
     gender: Gender.female,
+    age: 5,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -270,9 +295,10 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '4',
     petType: PetType.dog,
-    name: 'Four, 4',
+    name: 'Dog Four',
     gender: Gender.male,
     size: AnimalSize.giant,
+    age: 4,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -282,9 +308,10 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '5',
     petType: PetType.cat,
-    name: 'Cat Three, 3',
+    name: 'Cat Three',
     gender: Gender.female,
     size: AnimalSize.small,
+    age: 3,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -294,9 +321,10 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '6',
     petType: PetType.cat,
-    name: 'Cat Two, 2',
+    name: 'Cat Two',
     gender: Gender.male,
     size: AnimalSize.medium,
+    age: 2,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -305,10 +333,11 @@ List<PetCandidateModel> candidates = [
   ),
   PetCandidateModel(
     id: '7',
-    name: 'Cat One, 1',
+    name: 'Cat One',
     petType: PetType.cat,
     gender: Gender.male,
     size: AnimalSize.large,
+    age: 1,
     city: 'Town',
     petPics: [
       Constants.logoPath,
@@ -318,9 +347,10 @@ List<PetCandidateModel> candidates = [
   PetCandidateModel(
     id: '8',
     petType: PetType.dog,
-    name: 'Polly  (Paul), 10',
+    name: 'Polly  (Paul)',
     gender: Gender.male,
     size: AnimalSize.giant,
+    age: 10,
     city: 'Town',
     petPics: [
       Constants.logoPath,

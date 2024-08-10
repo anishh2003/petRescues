@@ -1,12 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/models/filters_model.dart';
-import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 enum PetFilterType {
   none,
   cat,
   dog,
 }
+
+//**-------------------- Pet type  Provider ------------------------------**//
 
 final tempSelectedPetsToggleProvider = StateProvider<PetFilterType>((ref) {
   return PetFilterType.none;
@@ -16,11 +17,7 @@ final appliedPetsToggleProvider = StateProvider<PetFilterType>((ref) {
   return PetFilterType.none;
 });
 
-final sizeProvider = StateProvider<FilterMenuOption>((ref) {
-  return FilterMenuOption(title: AnimalSize.small.displayName);
-});
-
-//**-------------------- Gender selection ------------------------------**//
+//**-------------------- Gender Provider ------------------------------**//
 
 final tempGenderSelectedProvider = StateProvider<List<GenderOption>>((ref) {
   return tempGenderFilterOptions;
@@ -30,9 +27,7 @@ final appliedGenderFilterProvider = StateProvider<List<GenderOption>>((ref) {
   return genderFilterOptions;
 });
 
-//**--------------------------------------------------------------------**//
-
-//**-------------------- Gender selection ------------------------------**//
+//**-------------------- Size provider ------------------------------**//
 
 final tempSizeSelectedProvider = StateProvider<List<AnimalSizeOption>>((ref) {
   return tempSizeFilterOptions;
@@ -40,6 +35,16 @@ final tempSizeSelectedProvider = StateProvider<List<AnimalSizeOption>>((ref) {
 
 final appliedSizeFilterProvider = StateProvider<List<AnimalSizeOption>>((ref) {
   return sizeFilterOptions;
+});
+
+//**-------------------- Age provider ------------------------------**//
+
+final tempAgeSelectedProvider = StateProvider<List<AgeOption>>((ref) {
+  return tempAgeFilterOptions;
+});
+
+final appliedAgeFilterProvider = StateProvider<List<AgeOption>>((ref) {
+  return ageFilterOptions;
 });
 
 //**--------------------------------------------------------------------**//

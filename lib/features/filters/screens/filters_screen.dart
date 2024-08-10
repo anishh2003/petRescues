@@ -35,6 +35,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
 
     ref.read(usersSettingsProvider).setUsersSizePreference(
         ref.read(appliedSizeFilterProvider.notifier).state);
+
+    ref.read(usersSettingsProvider).setUsersAgePreference(
+        ref.read(appliedAgeFilterProvider.notifier).state);
   }
 
   @override
@@ -94,6 +97,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                           (state) => ref.read(tempGenderSelectedProvider));
                       ref.read(appliedSizeFilterProvider.notifier).update(
                           (state) => ref.read(tempSizeSelectedProvider));
+                      ref
+                          .read(appliedAgeFilterProvider.notifier)
+                          .update((state) => ref.read(tempAgeSelectedProvider));
                       saveUsersFilterOptionsToDevice();
 
                       Routemaster.of(context).pop();
@@ -120,6 +126,12 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                               .toList());
 
                       ref.read(appliedSizeFilterProvider.notifier).update(
+                          (state) => state
+                              .map(
+                                  (item) => item.copyWith(checkboxValue: false))
+                              .toList());
+
+                      ref.read(appliedAgeFilterProvider.notifier).update(
                           (state) => state
                               .map(
                                   (item) => item.copyWith(checkboxValue: false))

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
+import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 final petListProvider = Provider<List<PetCandidateModel>>((ref) {
@@ -7,6 +8,7 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   var toggle = ref.watch(appliedPetsToggleProvider);
   var userSelectedGender = ref.watch(appliedGenderFilterProvider);
   var userSelectedSize = ref.watch(appliedSizeFilterProvider);
+  var userSelectedAge = ref.watch(appliedAgeFilterProvider);
 
   //-----------Pet type Filtering ----------------------------------------//
 
@@ -62,7 +64,47 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
     }).toList();
   }
 
-  return filteredCandidates;
-});
+//---------------  Animal Age Filtering --------------------------------//
+
+  // Step 1: Identify selected age
+  List<AnimalAge> selectedAges = userSelectedAge
+      .where((option) => option.checkboxValue)
+      .map((option) {
+        if (option.title == AnimalAge.lessThanOne.displayName) {
+          return AnimalAge.lessThanOne;
+        } else if (option.title == AnimalAge.oneToFour.displayName) {
+          return AnimalAge.oneToFour;
+        } else if (option.title == AnimalAge.fourToSeven.displayName) {
+          return AnimalAge.fourToSeven;
+        } else if (option.title == AnimalAge.sevenPlus.displayName) {
+          return AnimalAge.sevenPlus;
+        } else {
+          return null; // Handle unexpected cases
+        }
+      })
+      .whereType<AnimalAge>()
+      .toList();
+
+  if (selectedAges.isNotEmpty) {
+    // Step 2: Filter candidates by selected ages
+
+    AnimalAge animalAge = AnimalAge.lessThanOne;
+    filteredCandidates = filteredCandidates.where((candidate) {
+      if (candidate.age < 1) {
+        animalAge = AnimalAge.lessThanOne;
+      } else if (candidate.age > 1 && candidate.age < 4) {
+        animalAge = AnimalAge.oneToFour;
+      } else if (candidate.age > 4 && candidate.age < 7) {
+        animalAge = AnimalAge.fourToSeven;
+      } else if (candidate.age > 7) {
+        animalAge = AnimalAge.sevenPlus;
+      }
+
+      return selectedAges.contains(animalAge);
+    }).toList();
+  }
 
 //--------------------------------------------------------------------------//
+
+  return filteredCandidates;
+});

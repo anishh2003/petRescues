@@ -140,16 +140,39 @@ class UsersSettings {
     await _sharedPreferences.setStringList('Size', stringList);
   }
 
-  // FilterMenuOption getSizeFromString() {
-  //   String? value = _sharedPreferences.getString('Size');
-  //   return FilterMenuOption.values.firstWhere((e) => e.toString() == value,
-  //       orElse: () => FilterMenuOption(
-  //           title: AnimalSize.small.displayName, animalSizeOptions: []));
-  // }
+//** ----------------------- Age -------------------------------------------- */
+  List<AgeOption> getUsersAgePreference() {
+    List<String>? stringList = _sharedPreferences.getStringList('Age');
 
-  // Future<void> setSizeOfAnimal(FilterMenuOption value) async {
-  //   await _sharedPreferences.setString('Size', value.title.toString());
-  // }
+    // Convert the list of strings back to a list of GenderOption objects.
+    if (stringList != null) {
+      for (int i = 0; i < ageFilterOptions.length; i++) {
+        // Safely update checkboxValue based on stringList values
+        if (i < stringList.length) {
+          ageFilterOptions[i]
+              .copyWith(checkboxValue: stringList[i].toLowerCase() == 'true');
+        } else {
+          // If stringList is shorter, set a default value
+          ageFilterOptions[i]
+              .copyWith(checkboxValue: false); // Or some default value
+        }
+      }
+    }
+
+    tempAgeFilterOptions = ageFilterOptions.toList();
+
+    return ageFilterOptions;
+  }
+
+  Future<void> setUsersAgePreference(List<AgeOption> value) async {
+    // Convert AnimalSizeOption list to a list of strings
+    List<String> stringList = value
+        .map((animalAgeItem) => animalAgeItem.checkboxValue.toString())
+        .toList();
+    await _sharedPreferences.setStringList('Age', stringList);
+  }
+
+  //** -----------------------------------------------------------------------*/
 }
 
 final initialiseSettingsProvider = FutureProvider<void>((ref) async {
@@ -170,4 +193,8 @@ final initialiseSettingsProvider = FutureProvider<void>((ref) async {
   ref
       .read(appliedSizeFilterProvider.notifier)
       .update((state) => userSettings.getUsersSizePreference());
+
+  ref
+      .read(appliedAgeFilterProvider.notifier)
+      .update((state) => userSettings.getUsersAgePreference());
 });
