@@ -110,6 +110,7 @@ class UsersSettings {
     await _sharedPreferences.setStringList('Gender', stringList);
   }
 
+//** ----------------------- Size -------------------------------------------- */
   List<AnimalSizeOption> getUsersSizePreference() {
     List<String>? stringList = _sharedPreferences.getStringList('Size');
 
@@ -172,6 +173,38 @@ class UsersSettings {
     await _sharedPreferences.setStringList('Age', stringList);
   }
 
+//** ----------------------- Dont show Option -------------------------------- */
+  List<DontShowOption> getUsersDontShowPreference() {
+    List<String>? stringList = _sharedPreferences.getStringList('dontShow');
+
+    // Convert the list of strings back to a list of DontShowOption objects.
+    if (stringList != null) {
+      for (int i = 0; i < dontShowFilterOptions.length; i++) {
+        // Safely update checkboxValue based on stringList values
+        if (i < stringList.length) {
+          dontShowFilterOptions[i]
+              .copyWith(checkboxValue: stringList[i].toLowerCase() == 'true');
+        } else {
+          // If stringList is shorter, set a default value
+          dontShowFilterOptions[i]
+              .copyWith(checkboxValue: false); // Or some default value
+        }
+      }
+    }
+
+    tempDontShowFilterOptions = dontShowFilterOptions.toList();
+
+    return dontShowFilterOptions;
+  }
+
+  Future<void> setUsersDontShowPreference(List<DontShowOption> value) async {
+    // Convert DontShowOption list to a list of strings
+    List<String> stringList = value
+        .map((dontShowItem) => dontShowItem.checkboxValue.toString())
+        .toList();
+    await _sharedPreferences.setStringList('dontShow', stringList);
+  }
+
   //** -----------------------------------------------------------------------*/
 }
 
@@ -197,4 +230,8 @@ final initialiseSettingsProvider = FutureProvider<void>((ref) async {
   ref
       .read(appliedAgeFilterProvider.notifier)
       .update((state) => userSettings.getUsersAgePreference());
+
+  ref
+      .read(appliedDontShowOptionsProvider.notifier)
+      .update((state) => userSettings.getUsersDontShowPreference());
 });

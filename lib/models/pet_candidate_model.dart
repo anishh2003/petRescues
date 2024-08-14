@@ -63,6 +63,36 @@ extension AgeExtension on AnimalAge {
   }
 }
 
+enum Unknown { children, dogs, cats }
+
+extension UnknownExtension on Unknown {
+  String get displayName {
+    switch (this) {
+      case Unknown.children:
+        return 'Unknown with children';
+      case Unknown.dogs:
+        return 'Unknown with dogs';
+      case Unknown.cats:
+        return 'Unknown with cats';
+      default:
+        return '';
+    }
+  }
+
+  String get description {
+    switch (this) {
+      case Unknown.children:
+        return 'It is not known if this pet can live with children';
+      case Unknown.dogs:
+        return 'It is not known if this pet can live with dogs';
+      case Unknown.cats:
+        return 'It is not known if this pet can live with cats';
+      default:
+        return '';
+    }
+  }
+}
+
 class PetBubble {
   final String? text;
   final IconData? icon;
@@ -93,6 +123,7 @@ class PetCandidateModel {
   String? description;
 
   List<String>? petPics;
+  List<Unknown>? unknowns;
   List<String>? procedures;
   List<PetBubble>? bubbleOptions;
   String? rescueOrganisation;
@@ -107,6 +138,7 @@ class PetCandidateModel {
     this.city,
     this.description,
     this.petPics,
+    this.unknowns,
     this.procedures,
     this.bubbleOptions,
     this.rescueOrganisation,
@@ -241,6 +273,7 @@ List<PetCandidateModel> candidates = [
     ],
     description:
         'Meet Husky, a spirited 6-year-old dog with a heart full of love and adventure! Husky is an energetic and loyal companion who loves outdoor activities, from long walks to playing fetch. His striking appearance and bright eyes reflect his vibrant personality. Husky is well-trained, intelligent, and gets along wonderfully with other pets and children. If you\'re looking for a devoted and playful friend to join your family, Husky is the perfect match. Adopt Husky today and embark on countless adventures together!',
+    unknowns: [Unknown.cats],
     procedures: [
       'Vaccinated',
       'Microchipped',
@@ -290,6 +323,7 @@ List<PetCandidateModel> candidates = [
     petPics: [
       Constants.logoPath,
     ],
+    unknowns: [Unknown.children],
     procedures: [],
   ),
   PetCandidateModel(
@@ -355,6 +389,7 @@ List<PetCandidateModel> candidates = [
     petPics: [
       Constants.logoPath,
     ],
+    unknowns: [Unknown.cats, Unknown.dogs, Unknown.children],
     procedures: [],
   ),
 ];

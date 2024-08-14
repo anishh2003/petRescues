@@ -47,6 +47,17 @@ final appliedAgeFilterProvider = StateProvider<List<AgeOption>>((ref) {
   return ageFilterOptions;
 });
 
+//**-------------------- Dont show options provider ------------------------------**//
+
+final tempDontShowOptionsProvider = StateProvider<List<DontShowOption>>((ref) {
+  return tempDontShowFilterOptions;
+});
+
+final appliedDontShowOptionsProvider =
+    StateProvider<List<DontShowOption>>((ref) {
+  return dontShowFilterOptions;
+});
+
 //**--------------------------------------------------------------------**//
 class Filter {
   static void setAnimalTypeFilter(int? value, WidgetRef ref) {

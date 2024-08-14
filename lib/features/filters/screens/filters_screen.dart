@@ -11,8 +11,6 @@ import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.da
 import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/size_expansion.dart';
 import 'package:pet_rescues/features/filters/widgets/filter_expansion_options.dart/radius_expansion.dart';
 import 'package:pet_rescues/features/filters/widgets/pet_filter_toggle.dart';
-import 'package:pet_rescues/models/filters_model.dart';
-import 'package:pet_rescues/models/pet_candidate_model.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 import 'package:routemaster/routemaster.dart';
 
@@ -38,6 +36,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
 
     ref.read(usersSettingsProvider).setUsersAgePreference(
         ref.read(appliedAgeFilterProvider.notifier).state);
+    ref.read(usersSettingsProvider).setUsersDontShowPreference(
+        ref.read(appliedDontShowOptionsProvider.notifier).state);
   }
 
   @override
@@ -100,6 +100,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                       ref
                           .read(appliedAgeFilterProvider.notifier)
                           .update((state) => ref.read(tempAgeSelectedProvider));
+                      ref.read(appliedDontShowOptionsProvider.notifier).update(
+                          (state) => ref.read(tempDontShowOptionsProvider));
                       saveUsersFilterOptionsToDevice();
 
                       Routemaster.of(context).pop();
@@ -132,6 +134,11 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                               .toList());
 
                       ref.read(appliedAgeFilterProvider.notifier).update(
+                          (state) => state
+                              .map(
+                                  (item) => item.copyWith(checkboxValue: false))
+                              .toList());
+                      ref.read(appliedDontShowOptionsProvider.notifier).update(
                           (state) => state
                               .map(
                                   (item) => item.copyWith(checkboxValue: false))

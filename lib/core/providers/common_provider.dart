@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
-import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 final petListProvider = Provider<List<PetCandidateModel>>((ref) {
@@ -9,6 +8,7 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   var userSelectedGender = ref.watch(appliedGenderFilterProvider);
   var userSelectedSize = ref.watch(appliedSizeFilterProvider);
   var userSelectedAge = ref.watch(appliedAgeFilterProvider);
+  var userSelectedUnknowns = ref.watch(appliedDontShowOptionsProvider);
 
   //-----------Pet type Filtering ----------------------------------------//
 
@@ -101,6 +101,35 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
       }
 
       return selectedAges.contains(animalAge);
+    }).toList();
+  }
+
+//---------------  Unknown Filtering --------------------------------//
+
+  // Step 1: Identify selected age
+  List<Unknown> selectedUnknowns = userSelectedUnknowns
+      .where((option) => option.checkboxValue)
+      .map((option) {
+        if (option.title == Unknown.children.displayName) {
+          return Unknown.children;
+        } else if (option.title == Unknown.cats.displayName) {
+          return Unknown.cats;
+        } else if (option.title == Unknown.dogs.displayName) {
+          return Unknown.dogs;
+        } else {
+          return null; // Handle unexpected cases
+        }
+      })
+      .whereType<Unknown>()
+      .toList();
+
+  if (selectedUnknowns.isNotEmpty) {
+    filteredCandidates = filteredCandidates.where((candidate) {
+      if (candidate.unknowns == null) {
+        return true;
+      }
+      return candidate.unknowns!
+          .every((item) => !selectedUnknowns.contains(item));
     }).toList();
   }
 

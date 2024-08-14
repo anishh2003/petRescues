@@ -171,6 +171,7 @@ List<AgeOption> ageFilterOptions = [
   AgeOption(title: AnimalAge.sevenPlus.displayName, checkboxValue: false),
 ];
 
+
 List<ShelterOption> shelterFilterOptions = [
   ShelterOption(title: 'Dali dog Rescue', checkboxValue: false),
   ShelterOption(title: 'Be Kind Rescue', checkboxValue: false),
@@ -178,6 +179,7 @@ List<ShelterOption> shelterFilterOptions = [
   ShelterOption(title: 'Miracle\'s Mission', checkboxValue: false),
 ];
 
+List<DontShowOption> tempDontShowFilterOptions = [];
 List<DontShowOption> dontShowFilterOptions = [
   DontShowOption(title: 'Unknown with children', checkboxValue: false),
   DontShowOption(title: 'Unknown with dogs', checkboxValue: false),
