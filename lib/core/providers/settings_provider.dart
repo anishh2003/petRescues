@@ -205,6 +205,38 @@ class UsersSettings {
     await _sharedPreferences.setStringList('dontShow', stringList);
   }
 
+//** ----------------------- Shelter Option -------------------------------- */
+  List<ShelterOption> getUsersShelterPreference() {
+    List<String>? stringList = _sharedPreferences.getStringList('shelter');
+
+    // Convert the list of strings back to a list of DontShowOption objects.
+    if (stringList != null) {
+      for (int i = 0; i < shelterFilterOptions.length; i++) {
+        // Safely update checkboxValue based on stringList values
+        if (i < stringList.length) {
+          shelterFilterOptions[i]
+              .copyWith(checkboxValue: stringList[i].toLowerCase() == 'true');
+        } else {
+          // If stringList is shorter, set a default value
+          shelterFilterOptions[i]
+              .copyWith(checkboxValue: false); // Or some default value
+        }
+      }
+    }
+
+    tempShelterFilterOptions = shelterFilterOptions.toList();
+
+    return shelterFilterOptions;
+  }
+
+  Future<void> setUsersShelterPreference(List<ShelterOption> value) async {
+    // Convert shelter list to a list of strings
+    List<String> stringList = value
+        .map((dontShowItem) => dontShowItem.checkboxValue.toString())
+        .toList();
+    await _sharedPreferences.setStringList('shelter', stringList);
+  }
+
   //** -----------------------------------------------------------------------*/
 }
 
@@ -234,4 +266,8 @@ final initialiseSettingsProvider = FutureProvider<void>((ref) async {
   ref
       .read(appliedDontShowOptionsProvider.notifier)
       .update((state) => userSettings.getUsersDontShowPreference());
+
+  ref
+      .read(appliedShelterOptionsProvider.notifier)
+      .update((state) => userSettings.getUsersShelterPreference());
 });

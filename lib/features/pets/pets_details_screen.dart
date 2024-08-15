@@ -229,7 +229,7 @@ class _PetsDetailsScreenState extends ConsumerState<PetDetailsScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  pet.rescueOrganisation ??= "",
+                  pet.rescueOrganisation.displayName,
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!

@@ -93,6 +93,25 @@ extension UnknownExtension on Unknown {
   }
 }
 
+enum Shelter { dali, beKind, love, miracle }
+
+extension ShelterExtension on Shelter {
+  String get displayName {
+    switch (this) {
+      case Shelter.dali:
+        return 'Dali dog Rescue';
+      case Shelter.beKind:
+        return 'Furry Rescue Italy';
+      case Shelter.love:
+        return 'Love underdogs';
+      case Shelter.miracle:
+        return 'Miracle\'s Mission';
+      default:
+        return '';
+    }
+  }
+}
+
 class PetBubble {
   final String? text;
   final IconData? icon;
@@ -126,7 +145,7 @@ class PetCandidateModel {
   List<Unknown>? unknowns;
   List<String>? procedures;
   List<PetBubble>? bubbleOptions;
-  String? rescueOrganisation;
+  Shelter rescueOrganisation;
 
   PetCandidateModel({
     this.petType,
@@ -141,7 +160,7 @@ class PetCandidateModel {
     this.unknowns,
     this.procedures,
     this.bubbleOptions,
-    this.rescueOrganisation,
+    required this.rescueOrganisation,
   });
 }
 
@@ -208,7 +227,7 @@ List<PetCandidateModel> candidates = [
         icon: Icons.cruelty_free,
       ),
     ],
-    rescueOrganisation: 'Furry Rescue Italy',
+    rescueOrganisation: Shelter.beKind,
   ),
   PetCandidateModel(
     id: '1',
@@ -256,7 +275,7 @@ List<PetCandidateModel> candidates = [
         icon: Icons.cruelty_free,
       ),
     ],
-    rescueOrganisation: 'HelpingdogsandcatsrescueCIC',
+    rescueOrganisation: Shelter.dali,
   ),
   PetCandidateModel(
     id: '2',
@@ -310,7 +329,7 @@ List<PetCandidateModel> candidates = [
         icon: Icons.cruelty_free,
       ),
     ],
-    rescueOrganisation: 'Furry Rescue Italy',
+    rescueOrganisation: Shelter.dali,
   ),
   PetCandidateModel(
     id: '3',
@@ -325,6 +344,7 @@ List<PetCandidateModel> candidates = [
     ],
     unknowns: [Unknown.children],
     procedures: [],
+    rescueOrganisation: Shelter.miracle,
   ),
   PetCandidateModel(
     id: '4',
@@ -338,6 +358,7 @@ List<PetCandidateModel> candidates = [
       Constants.logoPath,
     ],
     procedures: [],
+    rescueOrganisation: Shelter.miracle,
   ),
   PetCandidateModel(
     id: '5',
@@ -351,6 +372,7 @@ List<PetCandidateModel> candidates = [
       Constants.logoPath,
     ],
     procedures: [],
+    rescueOrganisation: Shelter.dali,
   ),
   PetCandidateModel(
     id: '6',
@@ -364,6 +386,7 @@ List<PetCandidateModel> candidates = [
       Constants.logoPath,
     ],
     procedures: [],
+    rescueOrganisation: Shelter.love,
   ),
   PetCandidateModel(
     id: '7',
@@ -377,6 +400,7 @@ List<PetCandidateModel> candidates = [
       Constants.logoPath,
     ],
     procedures: [],
+    rescueOrganisation: Shelter.beKind,
   ),
   PetCandidateModel(
     id: '8',
@@ -391,5 +415,6 @@ List<PetCandidateModel> candidates = [
     ],
     unknowns: [Unknown.cats, Unknown.dogs, Unknown.children],
     procedures: [],
+    rescueOrganisation: Shelter.beKind,
   ),
 ];

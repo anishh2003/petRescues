@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
+import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 final petListProvider = Provider<List<PetCandidateModel>>((ref) {
@@ -9,7 +10,7 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   var userSelectedSize = ref.watch(appliedSizeFilterProvider);
   var userSelectedAge = ref.watch(appliedAgeFilterProvider);
   var userSelectedUnknowns = ref.watch(appliedDontShowOptionsProvider);
-
+  var userSelectedShelters = ref.watch(appliedShelterOptionsProvider);
   //-----------Pet type Filtering ----------------------------------------//
 
   if (toggle == PetFilterType.cat) {
@@ -101,6 +102,34 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
       }
 
       return selectedAges.contains(animalAge);
+    }).toList();
+  }
+
+  //---------------  Shelter Filtering --------------------------------//
+
+  // Step 1: Identify selected age
+  List<Shelter> selectedShelters = userSelectedShelters
+      .where((option) => option.checkboxValue)
+      .map((option) {
+        if (option.title == Shelter.dali.displayName) {
+          return Shelter.dali;
+        } else if (option.title == Shelter.beKind.displayName) {
+          return Shelter.beKind;
+        } else if (option.title == Shelter.love.displayName) {
+          return Shelter.love;
+        } else if (option.title == Shelter.miracle.displayName) {
+          return Shelter.miracle;
+        } else {
+          return null; // Handle unexpected cases
+        }
+      })
+      .whereType<Shelter>()
+      .toList();
+
+  if (selectedShelters.isNotEmpty) {
+    // Step 2: Filter candidates by selected sizes
+    filteredCandidates = filteredCandidates.where((candidate) {
+      return selectedShelters.contains(candidate.rescueOrganisation);
     }).toList();
   }
 

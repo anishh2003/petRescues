@@ -58,6 +58,16 @@ final appliedDontShowOptionsProvider =
   return dontShowFilterOptions;
 });
 
+//**-------------------- Shelter provider ------------------------------**//
+
+final tempShelterOptionsProvider = StateProvider<List<ShelterOption>>((ref) {
+  return tempShelterFilterOptions;
+});
+
+final appliedShelterOptionsProvider = StateProvider<List<ShelterOption>>((ref) {
+  return shelterFilterOptions;
+});
+
 //**--------------------------------------------------------------------**//
 class Filter {
   static void setAnimalTypeFilter(int? value, WidgetRef ref) {

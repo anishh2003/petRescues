@@ -38,6 +38,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         ref.read(appliedAgeFilterProvider.notifier).state);
     ref.read(usersSettingsProvider).setUsersDontShowPreference(
         ref.read(appliedDontShowOptionsProvider.notifier).state);
+    ref.read(usersSettingsProvider).setUsersShelterPreference(
+        ref.read(appliedShelterOptionsProvider.notifier).state);
   }
 
   @override
@@ -102,6 +104,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                           .update((state) => ref.read(tempAgeSelectedProvider));
                       ref.read(appliedDontShowOptionsProvider.notifier).update(
                           (state) => ref.read(tempDontShowOptionsProvider));
+                      ref.read(appliedShelterOptionsProvider.notifier).update(
+                          (state) => ref.read(tempShelterOptionsProvider));
                       saveUsersFilterOptionsToDevice();
 
                       Routemaster.of(context).pop();
@@ -139,6 +143,12 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                                   (item) => item.copyWith(checkboxValue: false))
                               .toList());
                       ref.read(appliedDontShowOptionsProvider.notifier).update(
+                          (state) => state
+                              .map(
+                                  (item) => item.copyWith(checkboxValue: false))
+                              .toList());
+
+                      ref.read(appliedShelterOptionsProvider.notifier).update(
                           (state) => state
                               .map(
                                   (item) => item.copyWith(checkboxValue: false))
