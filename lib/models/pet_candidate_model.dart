@@ -138,7 +138,7 @@ class PetCandidateModel {
   Gender gender;
   int age;
 
-  String? city;
+  String? location;
   String? description;
 
   List<String>? petPics;
@@ -154,7 +154,7 @@ class PetCandidateModel {
     required this.size,
     required this.gender,
     required this.age,
-    this.city,
+    this.location,
     this.description,
     this.petPics,
     this.unknowns,
@@ -172,7 +172,7 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.medium,
     age: 8,
-    city: 'Town',
+    location: '18-19 Western Rd, Brighton and Hove, Hove BN3 1AE',
     petPics: [
       'assets/images/pets/dogs/puppy/puppy1.jpg',
       'assets/images/pets/dogs/puppy/puppy2.jpg',
@@ -236,7 +236,8 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.small,
     age: 2,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       'assets/images/pets/cats/oreo/oreo_1.jpeg',
     ],
@@ -284,7 +285,8 @@ List<PetCandidateModel> candidates = [
     gender: Gender.female,
     size: AnimalSize.large,
     age: 6,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       'assets/images/pets/dogs/husky/husky1.jpg',
       'assets/images/pets/dogs/husky/husky2.jpg',
@@ -338,7 +340,8 @@ List<PetCandidateModel> candidates = [
     name: 'Dog Five',
     gender: Gender.female,
     age: 5,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       Constants.logoPath,
     ],
@@ -353,7 +356,8 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.giant,
     age: 4,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       Constants.logoPath,
     ],
@@ -367,7 +371,8 @@ List<PetCandidateModel> candidates = [
     gender: Gender.female,
     size: AnimalSize.small,
     age: 3,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       Constants.logoPath,
     ],
@@ -381,7 +386,8 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.medium,
     age: 2,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       Constants.logoPath,
     ],
@@ -395,7 +401,8 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.large,
     age: 1,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       Constants.logoPath,
     ],
@@ -409,7 +416,8 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.giant,
     age: 10,
-    city: 'Town',
+    location:
+        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
     petPics: [
       Constants.logoPath,
     ],

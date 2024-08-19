@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/providers/settings_provider.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
+import 'package:pet_rescues/features/geolocation/geolocation.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 import 'package:routemaster/routemaster.dart';
 
@@ -79,6 +80,17 @@ class ProfileDrawer extends ConsumerWidget {
                 },
               ),
               onTap: () => logOut(ref),
+            ),
+            ListTile(
+              title: Text(
+                'Location Page',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.black,
+              ),
+              onTap: () => Routemaster.of(context).push('/location'),
             ),
           ],
         ),
