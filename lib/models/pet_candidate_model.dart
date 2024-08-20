@@ -14,13 +14,13 @@ extension PetRadiusExtension on PetRadius {
   String get displayName {
     switch (this) {
       case PetRadius.fiveMiles:
-        return '5 miles';
+        return '5';
       case PetRadius.tenMiles:
-        return '10 miles';
+        return '10';
       case PetRadius.twentyMiles:
-        return '20 miles';
+        return '20';
       case PetRadius.twentyPlusMiles:
-        return '20+ miles';
+        return '21';
       default:
         return '';
     }

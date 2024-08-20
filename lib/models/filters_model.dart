@@ -131,7 +131,7 @@ class DontShowOption extends FilterOptions {
 }
 
 List<FilterMenuOption> filterMenuOptions = [
-  FilterMenuOption(title: 'Radius', radiusOptions: radiusFilterOptions),
+  FilterMenuOption(title: 'Radius (miles)', radiusOptions: radiusFilterOptions),
   FilterMenuOption(title: 'Size', animalSizeOptions: sizeFilterOptions),
   FilterMenuOption(title: 'Gender', genderOptions: genderFilterOptions),
   FilterMenuOption(title: 'Age', ageOptions: ageFilterOptions),
