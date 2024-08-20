@@ -16,6 +16,15 @@ final tempSelectedPetsToggleProvider = StateProvider<PetFilterType>((ref) {
 final appliedPetsToggleProvider = StateProvider<PetFilterType>((ref) {
   return PetFilterType.none;
 });
+//**-------------------- Radius Provider ------------------------------**//
+
+final tempRadiusSelectedProvider = StateProvider<List<RadiusOption>>((ref) {
+  return tempRadiusFilterOptions;
+});
+
+final appliedRadiusFilterProvider = StateProvider<List<RadiusOption>>((ref) {
+  return radiusFilterOptions;
+});
 
 //**-------------------- Gender Provider ------------------------------**//
 

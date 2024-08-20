@@ -140,11 +140,13 @@ List<FilterMenuOption> filterMenuOptions = [
       title: 'Don\'t Show', dontShowOptions: dontShowFilterOptions),
 ];
 
+List<RadiusOption> tempRadiusFilterOptions = [];
 List<RadiusOption> radiusFilterOptions = [
-  RadiusOption(title: '5 miles', checkboxValue: false),
-  RadiusOption(title: '10 miles', checkboxValue: false),
-  RadiusOption(title: '20 miles', checkboxValue: false),
-  RadiusOption(title: '20+ miles', checkboxValue: false),
+  RadiusOption(title: PetRadius.fiveMiles.displayName, checkboxValue: false),
+  RadiusOption(title: PetRadius.tenMiles.displayName, checkboxValue: false),
+  RadiusOption(title: PetRadius.twentyMiles.displayName, checkboxValue: false),
+  RadiusOption(
+      title: PetRadius.twentyPlusMiles.displayName, checkboxValue: false),
 ];
 
 List<AnimalSizeOption> tempSizeFilterOptions = [];

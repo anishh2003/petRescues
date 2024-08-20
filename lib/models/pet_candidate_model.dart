@@ -8,6 +8,25 @@ enum PetType {
   cat,
 }
 
+enum PetRadius { fiveMiles, tenMiles, twentyMiles, twentyPlusMiles }
+
+extension PetRadiusExtension on PetRadius {
+  String get displayName {
+    switch (this) {
+      case PetRadius.fiveMiles:
+        return '5 miles';
+      case PetRadius.tenMiles:
+        return '10 miles';
+      case PetRadius.twentyMiles:
+        return '20 miles';
+      case PetRadius.twentyPlusMiles:
+        return '20+ miles';
+      default:
+        return '';
+    }
+  }
+}
+
 enum Gender { male, female, notSure }
 
 extension GenderExtension on Gender {

@@ -81,6 +81,41 @@ class UsersSettings {
     await _sharedPreferences.setString('AnimalFilter', value.toString());
   }
 
+  //** ----------------------- Radius -------------------------------------------- */
+
+  List<RadiusOption> getUsersRadiusPreference() {
+    List<String>? stringList = _sharedPreferences.getStringList('Radius');
+
+    // Convert the list of strings back to a list of GenderOption objects.
+    if (stringList != null) {
+      for (int i = 0; i < radiusFilterOptions.length; i++) {
+        // Safely update checkboxValue based on stringList values
+        if (i < stringList.length) {
+          radiusFilterOptions[i]
+              .copyWith(checkboxValue: stringList[i].toLowerCase() == 'true');
+        } else {
+          // If stringList is shorter, set a default value
+          radiusFilterOptions[i]
+              .copyWith(checkboxValue: false); // Or some default value
+        }
+      }
+    }
+
+    tempRadiusFilterOptions = radiusFilterOptions.toList();
+
+    return radiusFilterOptions;
+  }
+
+  Future<void> setUsersRadiusPreference(List<RadiusOption> value) async {
+    // Convert AnimalRadiusOption list to a list of strings
+    List<String> stringList = value
+        .map((animalRadiusItem) => animalRadiusItem.checkboxValue.toString())
+        .toList();
+    await _sharedPreferences.setStringList('Radius', stringList);
+  }
+
+//** ----------------------- Dont show Option -------------------------------- */
+
   List<GenderOption> getUsersGenderPreference() {
     List<String> stringList = _sharedPreferences.getStringList('Gender') ?? [];
 
@@ -251,6 +286,9 @@ final initialiseSettingsProvider = FutureProvider<void>((ref) async {
       .read(appliedPetsToggleProvider.notifier)
       .update((state) => userSettings.getPetFilterTypeFromString());
 
+  ref
+      .read(appliedRadiusFilterProvider.notifier)
+      .update((state) => userSettings.getUsersRadiusPreference());
   ref
       .read(appliedGenderFilterProvider.notifier)
       .update((state) => userSettings.getUsersGenderPreference());

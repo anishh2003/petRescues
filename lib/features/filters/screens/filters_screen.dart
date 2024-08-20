@@ -40,6 +40,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
         ref.read(appliedDontShowOptionsProvider.notifier).state);
     ref.read(usersSettingsProvider).setUsersShelterPreference(
         ref.read(appliedShelterOptionsProvider.notifier).state);
+    ref.read(usersSettingsProvider).setUsersRadiusPreference(
+        ref.read(appliedRadiusFilterProvider.notifier).state);
   }
 
   @override
@@ -106,6 +108,8 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                           (state) => ref.read(tempDontShowOptionsProvider));
                       ref.read(appliedShelterOptionsProvider.notifier).update(
                           (state) => ref.read(tempShelterOptionsProvider));
+                      ref.read(appliedRadiusFilterProvider.notifier).update(
+                          (state) => ref.read(tempRadiusSelectedProvider));
                       saveUsersFilterOptionsToDevice();
 
                       Routemaster.of(context).pop();
@@ -149,6 +153,11 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
                               .toList());
 
                       ref.read(appliedShelterOptionsProvider.notifier).update(
+                          (state) => state
+                              .map(
+                                  (item) => item.copyWith(checkboxValue: false))
+                              .toList());
+                      ref.read(appliedRadiusFilterProvider.notifier).update(
                           (state) => state
                               .map(
                                   (item) => item.copyWith(checkboxValue: false))
