@@ -145,8 +145,7 @@ List<RadiusOption> radiusFilterOptions = [
   RadiusOption(title: PetRadius.fiveMiles.displayName, checkboxValue: false),
   RadiusOption(title: PetRadius.tenMiles.displayName, checkboxValue: false),
   RadiusOption(title: PetRadius.twentyMiles.displayName, checkboxValue: false),
-  RadiusOption(
-      title: PetRadius.twentyPlusMiles.displayName, checkboxValue: false),
+  RadiusOption(title: PetRadius.fiftyMiles.displayName, checkboxValue: false),
 ];
 
 List<AnimalSizeOption> tempSizeFilterOptions = [];

@@ -81,11 +81,11 @@ class _LocationPageState extends ConsumerState<LocationPage> {
 
   Future<void> _getDistanceFromCurrentCoordinates(Position position) async {
     const double milesToMeters = 1609.34;
-    List<double> distancesInMiles = [5, 10, 20, 21];
+    List<double> distancesInMiles = [5, 10, 20, 50];
     List<String> distanceMessages = [];
     List<String> petsInDistanceMessages = [];
     final Distance distance = const Distance();
-    // final num distanceInMeter = (earthRadius * pi / 4).round();
+
     var petList = ref.read(petListProvider);
     List<PetCandidateModel> filteredPets = [];
     var selectedUserRadiuses = ref.read(appliedRadiusFilterProvider);
@@ -98,6 +98,11 @@ class _LocationPageState extends ConsumerState<LocationPage> {
     // Sort in descending order
     radiusInDoublesFormat.sort((a, b) => b.compareTo(a));
 
+    if (radiusInDoublesFormat.isEmpty) {
+      //TODO : logic done to get entire UK
+      radiusInDoublesFormat.add(800);
+    }
+
     final p1 = LatLng(position.latitude, position.longitude);
 
     double distanceInMeters = radiusInDoublesFormat.first * milesToMeters;
@@ -105,31 +110,6 @@ class _LocationPageState extends ConsumerState<LocationPage> {
     final p2 = distance.offset(p1, distanceInMeters, 180);
 
     Function isInBoundary = path.createBoundary(p1, distanceInMeters);
-
-    //   petList.where((item)  {
-    // List<Location> petLocation =
-    //         await locationFromAddress(item.location!);
-
-    //     LatLng petsLocation =
-    //         LatLng(petLocation[0].latitude, petLocation[0].longitude);
-
-    //     //if the pet LatLong is in boundary, then filter the list to show those only
-    //     bool isWithinBoundary = isInBoundary(petsLocation);
-    //     //if yes, then show the animal . else dont show it
-    //     return isWithinBoundary;
-    //   }).toList();
-
-    // for (int i = 0; i <= petList.length; i++) {
-    //   List<Location> petLocation =
-    //       await locationFromAddress(petList[i].location!);
-
-    //   LatLng petsLocation =
-    //       LatLng(petLocation[0].latitude, petLocation[0].longitude);
-
-    //   //if the pet LatLong is in boundary, then filter the list to show those only
-    //   bool isWithinBoundary = isInBoundary(petsLocation);
-    //   //if yes, then show the animal . else dont show it
-    // }
 
     for (var item in petList) {
       List<Location> petLocation = await locationFromAddress(item.location!);

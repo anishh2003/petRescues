@@ -8,7 +8,7 @@ enum PetType {
   cat,
 }
 
-enum PetRadius { fiveMiles, tenMiles, twentyMiles, twentyPlusMiles }
+enum PetRadius { fiveMiles, tenMiles, twentyMiles, fiftyMiles }
 
 extension PetRadiusExtension on PetRadius {
   String get displayName {
@@ -19,8 +19,8 @@ extension PetRadiusExtension on PetRadius {
         return '10';
       case PetRadius.twentyMiles:
         return '20';
-      case PetRadius.twentyPlusMiles:
-        return '21';
+      case PetRadius.fiftyMiles:
+        return '50';
       default:
         return '';
     }
@@ -304,8 +304,7 @@ List<PetCandidateModel> candidates = [
     gender: Gender.female,
     size: AnimalSize.large,
     age: 6,
-    location:
-        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
+    location: '13, Tulip Close, Sale, Greater Manchester M33 5RX',
     petPics: [
       'assets/images/pets/dogs/husky/husky1.jpg',
       'assets/images/pets/dogs/husky/husky2.jpg',
@@ -359,8 +358,7 @@ List<PetCandidateModel> candidates = [
     name: 'Dog Five',
     gender: Gender.female,
     age: 5,
-    location:
-        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
+    location: '255/3, Canongate, Edinburgh, Midlothian EH8 8BQ',
     petPics: [
       Constants.logoPath,
     ],
@@ -375,8 +373,7 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.giant,
     age: 4,
-    location:
-        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
+    location: '4, Marsh Road, Middlesbrough TS1 5LB',
     petPics: [
       Constants.logoPath,
     ],
@@ -391,7 +388,7 @@ List<PetCandidateModel> candidates = [
     size: AnimalSize.small,
     age: 3,
     location:
-        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
+        'Dean House, 38, Apartment 113, Upper Dean Street, Birmingham, West Midlands B5 4SG',
     petPics: [
       Constants.logoPath,
     ],
@@ -420,8 +417,7 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.large,
     age: 1,
-    location:
-        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
+    location: 'Wivelsfield, Haywards Heath RH17 7RD',
     petPics: [
       Constants.logoPath,
     ],
@@ -435,8 +431,7 @@ List<PetCandidateModel> candidates = [
     gender: Gender.male,
     size: AnimalSize.giant,
     age: 10,
-    location:
-        'Unit 3, 25 Carlton Terrace, Brighton and Hove, Brighton BN41 1XF',
+    location: '55 Station Rd, Burgess Hill RH15 9DY',
     petPics: [
       Constants.logoPath,
     ],
