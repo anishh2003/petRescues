@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/core/providers/settings_provider.dart';
 import 'package:pet_rescues/features/auth/controller/auth_controller.dart';
-import 'package:pet_rescues/features/geolocation/geolocation.dart';
+import 'package:pet_rescues/features/geolocation/screens/geolocation.dart';
 import 'package:pet_rescues/settings/theme_provider.dart';
 import 'package:routemaster/routemaster.dart';
 

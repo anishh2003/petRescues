@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
@@ -8,6 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:flutter_map_math/flutter_geo_math.dart';
 import 'package:pet_rescues/core/providers/common_provider.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
+import 'package:pet_rescues/features/geolocation/controller/geolocation_controller.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
 class LocationPage extends ConsumerStatefulWidget {
@@ -19,55 +18,35 @@ class LocationPage extends ConsumerStatefulWidget {
 
 class _LocationPageState extends ConsumerState<LocationPage> {
   String? _currentAddress;
-  Position? _currentPosition;
+  // Position? _currentPosition;
   FlutterMapMath path = FlutterMapMath();
 
-  Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+  Future<void> _getCurrentPosition(Position? currentPosition) async {
+    await ref
+        .read(geoLocationControllerProvider.notifier)
+        .getCurrentPosition(context);
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
-      return false;
+    if (currentPosition != null) {
+      _getAddressFromLatLng(currentPosition);
+      _getDistanceFromCurrentCoordinates(currentPosition);
+    } else {
+      debugPrint("Position is null");
     }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Location permissions are denied')));
-        return false;
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
-      return false;
-    }
-    return true;
-  }
 
-  Future<void> _getCurrentPosition() async {
-    final hasPermission = await _handleLocationPermission();
-
-    if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) {
-      setState(() => _currentPosition = position);
-      _getAddressFromLatLng(_currentPosition!);
-      _getDistanceFromCurrentCoordinates(_currentPosition!);
-    }).catchError((e) {
-      debugPrint(e);
-    });
+    // await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+    //     .then((Position position) {
+    //   setState(() => _currentPosition = position);
+    //   _getAddressFromLatLng(_currentPosition!);
+    //   _getDistanceFromCurrentCoordinates(_currentPosition!);
+    // }).catchError((e) {
+    //   debugPrint(e);
+    // });
   }
 
   Future<void> _getAddressFromLatLng(Position position) async {
+    var currentPosition = ref.read(currentPositionProvider);
     await placemarkFromCoordinates(
-            _currentPosition!.latitude, _currentPosition!.longitude)
+            currentPosition!.latitude, currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
       setState(() {
@@ -146,6 +125,7 @@ class _LocationPageState extends ConsumerState<LocationPage> {
 
   @override
   Widget build(BuildContext context) {
+    var currentPosition = ref.watch(currentPositionProvider);
     return Scaffold(
       appBar: AppBar(title: const Text("Location Page")),
       body: SafeArea(
@@ -153,12 +133,12 @@ class _LocationPageState extends ConsumerState<LocationPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('LAT: ${_currentPosition?.latitude ?? ""}'),
-              Text('LNG: ${_currentPosition?.longitude ?? ""}'),
+              Text('LAT: ${currentPosition?.latitude ?? ""}'),
+              Text('LNG: ${currentPosition?.longitude ?? ""}'),
               Text('ADDRESS: ${_currentAddress ?? ""}'),
               const SizedBox(height: 32),
               ElevatedButton(
-                onPressed: _getCurrentPosition,
+                onPressed: () => _getCurrentPosition(currentPosition),
                 child: const Text("Get Current Location"),
               )
             ],
