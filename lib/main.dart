@@ -54,6 +54,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     return MaterialApp(
       home: initialiseSettings.when(
         data: (data) => Scaffold(
+          resizeToAvoidBottomInset: false,
           body: ref.watch(authStateChangeProvider).when(
                 data: (data) => MaterialApp.router(
                   debugShowCheckedModeBanner: false,
