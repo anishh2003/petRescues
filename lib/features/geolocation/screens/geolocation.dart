@@ -17,8 +17,6 @@ class LocationPage extends ConsumerStatefulWidget {
 }
 
 class _LocationPageState extends ConsumerState<LocationPage> {
-  String? _currentAddress;
-
   FlutterMapMath path = FlutterMapMath();
 
   Future<void> _getCurrentPosition(Position? currentPosition) async {
@@ -27,36 +25,30 @@ class _LocationPageState extends ConsumerState<LocationPage> {
         .getCurrentPosition(context);
 
     if (currentPosition != null) {
-      _getAddressFromLatLng(currentPosition);
+      await ref
+          .read(geoLocationControllerProvider.notifier)
+          .getAddressFromLatLng(context, currentPosition);
+
       _getDistanceFromCurrentCoordinates(currentPosition);
     } else {
       debugPrint("Position is null");
     }
-
-    // await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-    //     .then((Position position) {
-    //   setState(() => _currentPosition = position);
-    //   _getAddressFromLatLng(_currentPosition!);
-    //   _getDistanceFromCurrentCoordinates(_currentPosition!);
-    // }).catchError((e) {
-    //   debugPrint(e);
-    // });
   }
 
-  Future<void> _getAddressFromLatLng(Position position) async {
-    var currentPosition = ref.read(currentPositionProvider);
-    await placemarkFromCoordinates(
-            currentPosition!.latitude, currentPosition!.longitude)
-        .then((List<Placemark> placemarks) {
-      Placemark place = placemarks[0];
-      setState(() {
-        _currentAddress =
-            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
-      });
-    }).catchError((e) {
-      debugPrint(e);
-    });
-  }
+  // Future<void> _getAddressFromLatLng(Position position) async {
+  //   var currentPosition = ref.read(currentPositionProvider);
+  //   await placemarkFromCoordinates(
+  //           currentPosition!.latitude, currentPosition!.longitude)
+  //       .then((List<Placemark> placemarks) {
+  //     Placemark place = placemarks[0];
+  //     setState(() {
+  //       _currentAddress =
+  //           '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+  //     });
+  //   }).catchError((e) {
+  //     debugPrint(e);
+  //   });
+  // }
 
   Future<void> _getDistanceFromCurrentCoordinates(Position position) async {
     const double milesToMeters = 1609.34;
@@ -118,14 +110,15 @@ class _LocationPageState extends ConsumerState<LocationPage> {
           message); // Print the number of pets in the distance to the console
     }
 
-    setState(() {
-      _currentAddress = distanceMessages.join("\n");
-    });
+    //TODO : check if you still want this logic in the end.
+    String distMessage = distanceMessages.join("\n");
+    ref.read(currentAdressProvider.notifier).update((state) => distMessage);
   }
 
   @override
   Widget build(BuildContext context) {
     var currentPosition = ref.watch(currentPositionProvider);
+    var currentAddress = ref.watch(currentAdressProvider);
     return Scaffold(
       appBar: AppBar(title: const Text("Location Page")),
       body: SafeArea(
@@ -135,7 +128,7 @@ class _LocationPageState extends ConsumerState<LocationPage> {
             children: [
               Text('LAT: ${currentPosition?.latitude ?? ""}'),
               Text('LNG: ${currentPosition?.longitude ?? ""}'),
-              Text('ADDRESS: ${_currentAddress ?? ""}'),
+              Text('ADDRESS: ${currentAddress ?? ""}'),
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () => _getCurrentPosition(currentPosition),

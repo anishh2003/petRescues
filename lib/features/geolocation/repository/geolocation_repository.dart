@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:pet_rescues/core/failure.dart';
 import 'package:pet_rescues/core/type_defs.dart';
@@ -45,6 +46,18 @@ class GeolocationRepository {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       return right(position);
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  FutureEither<Placemark> getAddressFromLatLng(Position position) async {
+    List<Placemark> placemarks = [];
+    try {
+      placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      Placemark place = placemarks[0];
+      return right(place);
     } catch (e) {
       return left(Failure(e.toString()));
     }

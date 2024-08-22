@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:pet_rescues/core/utils.dart';
 import 'package:pet_rescues/features/geolocation/repository/geolocation_repository.dart';
 
 final currentPositionProvider = StateProvider<Position?>((ref) {
+  return null;
+});
+
+final currentAdressProvider = StateProvider<String?>((ref) {
   return null;
 });
 
@@ -41,5 +46,15 @@ class GeolocationController extends StateNotifier<bool> {
         _ref.read(currentPositionProvider.notifier).update((state) => r);
       });
     });
+  }
+
+  Future<void> getAddressFromLatLng(
+      BuildContext context, Position position) async {
+    final placeAddress =
+        await _geoLocationRepository.getAddressFromLatLng(position);
+    placeAddress.fold(
+        (l) => showSnackBar(context, l.message),
+        (place) => _ref.read(currentAdressProvider.notifier).update((state) =>
+            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}'));
   }
 }
