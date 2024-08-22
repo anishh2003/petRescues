@@ -18,7 +18,7 @@ class LocationPage extends ConsumerStatefulWidget {
 
 class _LocationPageState extends ConsumerState<LocationPage> {
   String? _currentAddress;
-  // Position? _currentPosition;
+
   FlutterMapMath path = FlutterMapMath();
 
   Future<void> _getCurrentPosition(Position? currentPosition) async {
