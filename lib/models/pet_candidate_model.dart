@@ -157,6 +157,7 @@ class PetCandidateModel {
   Gender gender;
   int age;
 
+  double? distance;
   String? location;
   String? description;
 
@@ -173,6 +174,7 @@ class PetCandidateModel {
     required this.size,
     required this.gender,
     required this.age,
+    this.distance,
     this.location,
     this.description,
     this.petPics,

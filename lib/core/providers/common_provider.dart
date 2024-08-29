@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pet_rescues/features/filters/controller/filters_controller.dart';
+import 'package:pet_rescues/features/geolocation/controller/geolocation_controller.dart';
 import 'package:pet_rescues/models/filters_model.dart';
 import 'package:pet_rescues/models/pet_candidate_model.dart';
 
@@ -11,6 +12,7 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
   var userSelectedAge = ref.watch(appliedAgeFilterProvider);
   var userSelectedUnknowns = ref.watch(appliedDontShowOptionsProvider);
   var userSelectedShelters = ref.watch(appliedShelterOptionsProvider);
+  var userSelectedRadiusPets = ref.watch(animalsInRadiusProvider);
   //-----------Pet type Filtering ----------------------------------------//
 
   if (toggle == PetFilterType.cat) {
@@ -160,6 +162,12 @@ final petListProvider = Provider<List<PetCandidateModel>>((ref) {
       return candidate.unknowns!
           .every((item) => !selectedUnknowns.contains(item));
     }).toList();
+  }
+
+//---------------  Radius Filtering --------------------------------//
+
+  if (userSelectedRadiusPets.isNotEmpty) {
+    filteredCandidates = userSelectedRadiusPets;
   }
 
 //--------------------------------------------------------------------------//

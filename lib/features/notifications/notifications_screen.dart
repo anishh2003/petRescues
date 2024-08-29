@@ -12,8 +12,10 @@ class NotificationsScreen extends ConsumerStatefulWidget {
 class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Container(
+      height: 500,
+      width: 500,
+      child: const Center(
         child: Text("Notifications Screen"),
       ),
     );

@@ -35,15 +35,57 @@ class PetCard extends StatelessWidget {
                 topLeft: Radius.circular(10.0),
                 topRight: Radius.circular(10.0),
               ),
-              child: Container(
-                width: 400,
-                height: 400,
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: candidate.petPics?.first == null
-                      ? Image.asset(Constants.logoPath)
-                      : Image.asset(candidate.petPics!.first),
-                ),
+              child: Stack(
+                children: [
+                  Container(
+                    width: 400,
+                    height: 400,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Stack(
+                        children: [
+                          Container(
+                            child: candidate.petPics?.first == null
+                                ? Image.asset(Constants.logoPath)
+                                : Image.asset(candidate.petPics!.first),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  candidate.distance != null
+                      ? Positioned(
+                          bottom: -65,
+                          left: 5,
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.place,
+                                  size: 25,
+                                  color: Theme.of(context).colorScheme.surface,
+                                ),
+                                Text(
+                                  "${candidate.distance!.toStringAsFixed(2)} miles",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall!
+                                      .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .surface,
+                                      ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+                ],
               ),
             ),
           ),

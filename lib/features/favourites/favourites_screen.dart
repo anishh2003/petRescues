@@ -12,8 +12,10 @@ class FavouritesScreen extends ConsumerStatefulWidget {
 class _FavouritesScreenState extends ConsumerState<FavouritesScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Container(
+      height: 500,
+      width: 500,
+      child: const Center(
         child: Text("Favourites Screen"),
       ),
     );

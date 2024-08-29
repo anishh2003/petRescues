@@ -26,6 +26,7 @@ final appliedRadiusFilterProvider = StateProvider<List<RadiusOption>>((ref) {
   return radiusFilterOptions;
 });
 
+
 //**-------------------- Gender Provider ------------------------------**//
 
 final tempGenderSelectedProvider = StateProvider<List<GenderOption>>((ref) {
